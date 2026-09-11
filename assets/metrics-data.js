@@ -238,7 +238,7 @@ window.__SCHOLAR_METRICS__ = {
     }
   ],
   "citations": {
-    "Differential+vegetation+feedback+on+global+land+monsoon+during+the+Mid-Holocene+and+the+Last+Interglacial": 4,
+    "Differential+vegetation+feedback+on+global+land+monsoon+during+the+Mid-Holocene+and+Last+Interglacial": 4,
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
     "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 36,

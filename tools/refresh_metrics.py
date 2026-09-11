@@ -264,13 +264,31 @@ def read_site_queries():
     return out
 
 
+# Scholar often files a paper under a shorter title than the journal's - here
+# the site carries "... on the global land monsoon system ..." while Scholar has
+# "... on global land monsoon ...". Keyword overlap cannot bridge that safely on
+# its own: adding "system" drags the margin over the runner-up down to 0.095,
+# just under FUZZY_MARGIN, and the paper silently loses its count. These few are
+# therefore pinned by hand.
+#
+#   (a fragment identifying the site entry, the Scholar title to read from)
+#
+# Keyed by fragment rather than by the whole title so that small edits to the
+# site title do not silently break the pin.
+TITLE_ALIASES = [
+    ("global land monsoon system",
+     "Differential vegetation feedback on global land monsoon during the Mid-Holocene and Last Interglacial"),
+]
+
+
 def match_citations(queries, papers):
     """Map site query string -> citation count, but only where that is safe.
 
-    An exact match after normalisation is taken directly. Everything else is
-    compared on keyword overlap; a fuzzy match is accepted only when it clears
-    both FUZZY_MIN and FUZZY_MARGIN. Queries that match nothing are simply absent
-    from the result, so the page shows no count for them rather than a wrong one.
+    An exact match after normalisation is taken directly; likewise an entry
+    listed in TITLE_ALIASES. Everything else is compared on keyword overlap; a
+    fuzzy match is accepted only when it clears both FUZZY_MIN and FUZZY_MARGIN.
+    Queries that match nothing are simply absent from the result, so the page
+    shows no count for them rather than a wrong one.
     """
     exact, keyed = {}, []
     for p in papers:
@@ -284,6 +302,17 @@ def match_citations(queries, papers):
         if n in exact:
             out[q] = exact[n]
             continue
+
+        # Hand-pinned: read the count straight off the named Scholar entry. If
+        # that entry has gone, fall through to the fuzzy comparison rather than
+        # dropping the paper.
+        pinned = next((t for frag, t in TITLE_ALIASES if frag in n), None)
+        if pinned:
+            pn = norm_title(pinned)
+            if pn in exact:
+                out[q] = exact[pn]
+                continue
+
         k = keywords(n)
         ranked = sorted(((dice(k, kk), c) for kk, c in keyed), reverse=True)
         if (
@@ -438,6 +467,13 @@ def main():
     say("Scraped: %s" % summarise(payload))
     for title, score in fuzzy:
         say("  fuzzy %.2f  %s" % (score, title[:88]))
+
+    # A pin points at a Scholar title by name; if Scholar renames or drops the
+    # entry the pin goes dead and the paper quietly falls back to fuzzy matching.
+    scholar_titles = {norm_title(p["title"]) for p in papers}
+    for _frag, target in TITLE_ALIASES:
+        if norm_title(target) not in scholar_titles:
+            say("  WARNING: pinned Scholar title not found: %s" % target[:88])
     unmatched = [q for q in queries if q not in citations]
     if unmatched:
         say("  no Scholar entry yet (%d):" % len(unmatched))

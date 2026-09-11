@@ -1,8 +1,8 @@
 {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-09-11T20:11:09+02:00",
-  "updatedDisplay": "11 September 2026",
+  "updated": "2026-09-12T00:15:21+02:00",
+  "updatedDisplay": "12 September 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
     "citations": 1343,
@@ -155,9 +155,9 @@
       "year": 2025
     },
     {
-      "title": "Differential vegetation feedback on global land monsoon during the Mid-Holocene and Last Interglacial",
+      "title": "Differential vegetation feedback on the global land monsoon system during the mid-Holocene and Last Interglacial",
       "citations": 4,
-      "year": 2025
+      "year": 2026
     },
     {
       "title": "Influence of May–June frontal precipitation on coherent moisture pattern in east-central China since 1793 based on tree-ring data",
@@ -277,6 +277,6 @@
   },
   "citationMatches": {
     "matched": 38,
-    "queries": 57
+    "queries": 48
   }
 }

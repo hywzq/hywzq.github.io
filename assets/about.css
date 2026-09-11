@@ -181,37 +181,7 @@
   font-size: .76rem;
   line-height: 1.35;
 }
-.scholar-meta {
-  margin: .85rem 0 0;
-  color: var(--muted);
-  font-size: .86rem;
-  line-height: 1.45;
-}
-.scholar-meta a {
-  color: inherit;
-  border-bottom: 1px dotted rgba(23,32,51,.28);
-}
-.scholar-meta a:hover {
-  color: var(--link);
-  border-bottom-color: currentColor;
-}
-/* green "live" dot, revealed only once metrics.js has injected fresh numbers */
-.scholar-meta[data-synced="true"]::before {
-  content: "";
-  display: inline-block;
-  width: .5rem;
-  height: .5rem;
-  margin-right: .45rem;
-  border-radius: 50%;
-  background: #2ea36b;
-  box-shadow: 0 0 0 3px rgba(46,163,107,.16);
-  vertical-align: middle;
-}
-/* amber dot when the last successful refresh is more than a week old */
-.scholar-meta[data-stale="true"]::before {
-  background: #d98324;
-  box-shadow: 0 0 0 3px rgba(217,131,36,.16);
-}
+
 
 /* ---------- compact list items ---------- */
 .award-list,

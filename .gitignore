@@ -10,5 +10,8 @@ tools/refresh-metrics.log
 # editor scratch files
 _shoot_tmp.html
 
+# python bytecode from the tools/ scripts
+__pycache__/
+
 # WorkBuddy workspace notes (internal, not part of the published site)
 .workbuddy-ai/

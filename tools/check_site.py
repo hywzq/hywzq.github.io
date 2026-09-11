@@ -10,6 +10,7 @@ Verifies, across every .html page:
   4. no leftover placeholder text
   5. no descendant selectors like ".x span" that would pill-wrap bilingual spans
   6. the metrics pipeline files exist and agree with each other
+  7. every "find this paper" link is accounted for by the citation map
 
 Run:  python3 tools/check_site.py
 Exit code 0 = clean, 1 = problems found.
@@ -35,6 +36,9 @@ PLACEHOLDERS = [
     "Lorem ipsum", "TODO", "TBD", "Your Name", "example.com",
     "xxx@", "PLACEHOLDER", "占位",
 ]
+
+# The "find this paper" links, whose literal ?q= value keys the citation map.
+QUERY_RE = re.compile(r'href="https://scholar\.google\.com/scholar\?q=([^"]+)"')
 
 problems = []
 notes = []
@@ -144,6 +148,39 @@ else:
     for tag in ("assets/metrics-data.js", "assets/metrics.js"):
         if tag not in index:
             fail("index.html does not load %s" % tag)
+
+    # --- per-publication citation counts -------------------------------------
+    # The keys of `citations` are the literal ?q= values of the "find this paper"
+    # links. If a title is edited in the HTML without re-running the refresh, the
+    # key goes stale and that badge silently disappears - so check both directions.
+    counts = payload.get("citations")
+    if counts is None:
+        fail("metrics.json has no `citations` map (run tools/refresh_metrics.py)")
+    else:
+        on_page = set()
+        for name, html in pages.items():
+            on_page.update(re.findall(QUERY_RE, html))
+        stale = sorted(set(counts) - on_page)
+        if stale:
+            fail(
+                "%d citation key(s) no longer appear as ?q= links in any page "
+                "(title edited? re-run tools/refresh_metrics.py): %s"
+                % (len(stale), "; ".join(s[:60] for s in stale[:3]))
+            )
+        unmatched = sorted(on_page - set(counts))
+        matches = payload.get("citationMatches") or {}
+        if matches.get("matched") != len(counts):
+            fail("citationMatches.matched=%s but %d keys in citations" % (matches.get("matched"), len(counts)))
+        notes.append(
+            "citations: %d/%d publication links have a count (%d not on Scholar yet)"
+            % (len(counts), len(on_page), len(unmatched))
+        )
+        for name in ("publications.html", "research-highlights.html"):
+            if name not in pages:
+                continue
+            for tag in ("assets/metrics-data.js", "assets/metrics.js"):
+                if tag not in pages[name]:
+                    fail("%s does not load %s" % (name, tag))
     # the hard-coded fallback numbers should match the current data
     for hook, key in (("gs-citations", "citations"), ("gs-hindex", "hIndex"), ("gs-i10index", "i10Index")):
         m = re.search(r'id="%s"[^>]*>([\d,]+)<' % hook, index)

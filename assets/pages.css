@@ -129,6 +129,34 @@
   white-space: nowrap;
 }
 
+/* Citation count injected next to a publication's link by assets/metrics.js.
+   Deliberately cooler than the amber .pub-note above so "how often this was
+   cited" never reads as "what state this paper is in". The chip is inserted
+   *before* the link, so the metadata stays grouped and the action stays last. */
+.pub-cite {
+  display: inline-block;
+  /* Never let a flex parent (.research-actions on the highlights page is one)
+     squeeze the chip to zero width, or stretch it to the height of the buttons
+     beside it - either way border-radius:999px turns it into an oval instead of
+     a pill. */
+  flex: none;
+  align-self: center;
+  margin-right: .4rem;
+  padding: .08rem .5rem;
+  border: 1px solid rgba(var(--tint),.28);
+  border-radius: 999px;
+  background: rgba(var(--tint),.07);
+  color: rgb(var(--tint));
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  cursor: help;
+}
+.pub-cite:hover { background: rgba(var(--tint),.14); }
+
+
 .pub-legend {
   max-width: 900px;
   margin: 0 0 1.2rem;

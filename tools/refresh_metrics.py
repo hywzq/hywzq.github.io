@@ -9,6 +9,13 @@ scraping it from this machine with a real browser engine, which is what this
 script does. It writes ``assets/metrics-data.js``, which the page loads with a
 plain <script> tag (so it also works when the site is opened over file://).
 
+Besides the headline numbers it also records the citation count of every work on
+the profile, then matches those against the "find this paper" links in the site's
+own HTML so each publication can show its own count. The matches are emitted
+keyed by the literal ``?q=`` value of the link, which means assets/metrics.js can
+look a count up with a plain string comparison - the title-matching rules exist
+only here and cannot drift out of sync with a second copy in JavaScript.
+
 Usage
 -----
     python3 tools/refresh_metrics.py              # scrape and write
@@ -26,6 +33,7 @@ import re
 import shutil
 import subprocess
 import sys
+from urllib.parse import unquote_plus
 
 SCHOLAR_USER = "tv_6I4YAAAAJ"
 SCHOLAR_URL = "https://scholar.google.com/citations?user=%s&hl=en" % SCHOLAR_USER
@@ -130,25 +138,165 @@ def parse_metrics(dom):
     }, None
 
 
-def count_works(chrome, first_dom):
-    """Count how many works the Scholar profile lists, across all pages."""
-    total = len(re.findall(r'class="gsc_a_tr"', first_dom))
-    if total == 0:
-        return None
+WORK_ROW = re.compile(r'<tr class="gsc_a_tr">(.*?)</tr>', re.S)
+WORK_TITLE = re.compile(r'class="gsc_a_at"[^>]*>(.*?)</a>', re.S)
+WORK_CITED = re.compile(r'class="gsc_a_ac[^"]*"[^>]*>(.*?)</a>', re.S)
+WORK_YEAR = re.compile(r'class="gsc_a_h[^"]*"[^>]*>(.*?)</span>', re.S)
+
+ESCAPES = [("&amp;", "&"), ("&#39;", "'"), ("&apos;", "'"), ("&quot;", '"'),
+           ("&lt;", "<"), ("&gt;", ">"), ("&nbsp;", " ")]
+
+
+def strip_tags(s):
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s or "")).strip()
+
+
+def unescape(s):
+    for a, b in ESCAPES:
+        s = s.replace(a, b)
+    return s
+
+
+def parse_works(dom):
+    """Pull every work row out of a Scholar profile page."""
+    out = []
+    for row in WORK_ROW.findall(dom):
+        t = WORK_TITLE.search(row)
+        if not t:
+            continue
+        c = WORK_CITED.search(row)
+        y = WORK_YEAR.search(row)
+        cited = strip_tags(c.group(1)) if c else ""
+        year = strip_tags(y.group(1)) if y else ""
+        out.append({
+            "title": unescape(strip_tags(t.group(1))),
+            "citations": int(cited) if cited.isdigit() else 0,
+            "year": int(year) if year.isdigit() else None,
+        })
+    return out
+
+
+def collect_works(chrome, first_dom):
+    """Every work the profile lists, with its citation count, across all pages."""
+    papers = parse_works(first_dom)
+    if not papers:
+        return []
     cstart = 20
     while cstart < MAX_WORK_PAGES * 20:
         dom = dump_dom(chrome, "%s&cstart=%d" % (SCHOLAR_URL, cstart))
-        n = len(re.findall(r'class="gsc_a_tr"', dom))
-        if n == 0:
+        batch = parse_works(dom)
+        if not batch:
             break
-        total += n
-        if n < 20:
+        papers.extend(batch)
+        if len(batch) < 20:
             break
         cstart += 20
-    return total
+    return papers
 
 
-def build_payload(metrics, works):
+def norm_title(s):
+    """Normalise a paper title so site titles can be matched to Scholar ones.
+
+    Punctuation, dashes and quotes vary between the site, the journal and
+    Scholar; folding them all away leaves just the words, which is what the
+    comparison actually cares about.
+    """
+    s = (s or "").lower()
+    s = re.sub(r"[\u2010-\u2015\u2212]", "-", s)
+    s = re.sub(r"[\u2018\u2019\u02bc`\u00b4]", "'", s)
+    s = re.sub(r"[\u201c\u201d]", '"', s)
+    s = re.sub(r"[^a-z0-9\u4e00-\u9fff]+", " ", s)
+    return s.strip()
+
+
+# Words that carry no identifying weight in a paper title. Dropped before the
+# fuzzy comparison so that "X during the Holocene" and "X in the Holocene" are
+# recognised as the same paper.
+STOPWORDS = set(
+    """a an and are as at based by during for from in into is it its of on or
+       the their to using was were with within new""".split()
+)
+
+
+def keywords(normalised):
+    return {w for w in normalised.split() if len(w) > 2 and w not in STOPWORDS}
+
+
+def dice(a, b):
+    """Sørensen-Dice coefficient over two keyword sets."""
+    if not a or not b:
+        return 0.0
+    return 2.0 * len(a & b) / (len(a) + len(b))
+
+
+# A title only counts as a fuzzy match if it overlaps the Scholar title this much
+# AND beats the runner-up by this margin. Both guards matter: the margin is what
+# stops a paper being given the citation count of a genuinely different paper
+# that happens to have a near-identical title.
+FUZZY_MIN = 0.62
+FUZZY_MARGIN = 0.10
+
+# The margin is compared with a tolerance because the scores are floats. A pair
+# scoring 1.000 against 0.900 has a real margin of exactly FUZZY_MARGIN, but in
+# binary floating point it comes out as 0.09999999999999998 and a bare >= test
+# rejects it. That silently dropped a genuine match once already.
+EPSILON = 1e-9
+
+QUERY_RE = re.compile(r'href="https://scholar\.google\.com/scholar\?q=([^"]+)"')
+
+
+def read_site_queries():
+    """Every "find this paper" query string on the site, in page order.
+
+    These are the *raw* attribute values, kept verbatim. They become the keys of
+    the citation map, so assets/metrics.js only has to slice the href and do a
+    string comparison - it never normalises a title itself.
+    """
+    seen, out = set(), []
+    for name in sorted(os.listdir(ROOT)):
+        if not name.endswith(".html") or name.startswith("_"):
+            continue
+        with open(os.path.join(ROOT, name), encoding="utf-8") as fh:
+            for q in QUERY_RE.findall(fh.read()):
+                if q not in seen:
+                    seen.add(q)
+                    out.append(q)
+    return out
+
+
+def match_citations(queries, papers):
+    """Map site query string -> citation count, but only where that is safe.
+
+    An exact match after normalisation is taken directly. Everything else is
+    compared on keyword overlap; a fuzzy match is accepted only when it clears
+    both FUZZY_MIN and FUZZY_MARGIN. Queries that match nothing are simply absent
+    from the result, so the page shows no count for them rather than a wrong one.
+    """
+    exact, keyed = {}, []
+    for p in papers:
+        n = norm_title(p["title"])
+        exact.setdefault(n, p["citations"])
+        keyed.append((keywords(n), p["citations"]))
+
+    out, fuzzy = {}, []
+    for q in queries:
+        n = norm_title(unquote_plus(q))
+        if n in exact:
+            out[q] = exact[n]
+            continue
+        k = keywords(n)
+        ranked = sorted(((dice(k, kk), c) for kk, c in keyed), reverse=True)
+        if (
+            ranked
+            and ranked[0][0] >= FUZZY_MIN
+            and ranked[0][0] - ranked[1][0] >= FUZZY_MARGIN - EPSILON
+        ):
+            out[q] = ranked[0][1]
+            fuzzy.append((unquote_plus(q), ranked[0][0]))
+    return out, fuzzy
+
+
+def build_payload(metrics, papers, citations, query_count):
     now = datetime.datetime.now().astimezone()
     return {
         "source": "Google Scholar",
@@ -156,8 +304,13 @@ def build_payload(metrics, works):
         "updated": now.isoformat(timespec="seconds"),
         "updatedDisplay": now.strftime("%d %B %Y"),
         "scholar": metrics,
-        "works": works,
+        "works": len(papers) or None,
+        "papers": papers,
+        # keyed by the literal ?q= value of each "find this paper" link
+        "citations": citations,
+        "citationMatches": {"matched": len(citations), "queries": query_count},
     }
+
 
 
 def render_js(payload):
@@ -179,10 +332,61 @@ def read_previous():
         return None
 
 
+# Elements on the homepage that carry the number as static text as well as a
+# data-metric hook. assets/metrics.js overwrites them on load; rewriting them
+# here keeps the page correct for anyone reading it with JavaScript switched off,
+# instead of leaving numbers from whenever the markup was last hand-edited.
+NUMERIC_METRICS = ("citations", "citationsSince", "hIndex", "hIndexSince",
+                   "i10Index", "i10IndexSince", "works")
+
+
+def sync_fallbacks(payload):
+    """Rewrite the hard-coded metric numbers in index.html to match the scrape."""
+    path = os.path.join(ROOT, "index.html")
+    if not os.path.exists(path):
+        return 0
+    with open(path, encoding="utf-8") as fh:
+        html = original = fh.read()
+
+    values = dict(payload["scholar"])
+    values["works"] = payload.get("works")
+
+    updated = 0
+    for key in NUMERIC_METRICS:
+        value = values.get(key)
+        if not isinstance(value, int):
+            continue
+        text = "{:,}".format(value)
+        pattern = re.compile(
+            r'(<[a-z]+[^>]*\bdata-metric="%s"[^>]*>)([^<]*)(</[a-z]+>)' % re.escape(key)
+        )
+
+        def swap(match, text=text):
+            nonlocal updated
+            if match.group(2) != text:
+                updated += 1
+            return match.group(1) + text + match.group(3)
+
+        html = pattern.sub(swap, html)
+
+    if html != original:
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(html)
+    return updated
+
+
 def summarise(payload):
     s = payload["scholar"]
-    return "citations %d (since %s) | h-index %d | i10-index %d | works %s" % (
-        s["citations"], s["citationsSince"], s["hIndex"], s["i10Index"], payload["works"],
+    m = payload.get("citationMatches") or {}
+    return (
+        "citations %d (since %s) | h-index %d | i10-index %d | works %s "
+        "(top cited: %s) | publication counts %s/%s"
+        % (
+            s["citations"], s["citationsSince"], s["hIndex"], s["i10Index"],
+            payload["works"],
+            max((p["citations"] for p in payload.get("papers") or []), default=0),
+            m.get("matched", 0), m.get("queries", 0),
+        )
     )
 
 
@@ -214,17 +418,31 @@ def main():
         print("       (leaving existing metrics in place)", file=sys.stderr)
         return 1
 
-    works = count_works(chrome, dom)
-    payload = build_payload(metrics, works)
+    papers = collect_works(chrome, dom)
+    queries = read_site_queries()
+    citations, fuzzy = match_citations(queries, papers)
+    payload = build_payload(metrics, papers, citations, len(queries))
 
     previous = read_previous()
-    if previous and previous.get("scholar") == payload["scholar"] and previous.get("works") == payload["works"]:
+    if (
+        previous
+        and previous.get("scholar") == payload["scholar"]
+        and previous.get("papers") == payload["papers"]
+        and previous.get("citations") == payload["citations"]
+    ):
         # Numbers unchanged: only refresh the timestamp so "last checked" stays honest.
         changed = False
     else:
         changed = True
 
     say("Scraped: %s" % summarise(payload))
+    for title, score in fuzzy:
+        say("  fuzzy %.2f  %s" % (score, title[:88]))
+    unmatched = [q for q in queries if q not in citations]
+    if unmatched:
+        say("  no Scholar entry yet (%d):" % len(unmatched))
+        for q in unmatched:
+            say("    - %s" % unquote_plus(q)[:88])
     if previous and changed:
         say("Previous: %s" % summarise(previous))
 
@@ -242,6 +460,10 @@ def main():
         say("Updated %s and %s" % (os.path.relpath(OUT_JSON, ROOT), os.path.relpath(OUT_JS, ROOT)))
     else:
         say("Numbers unchanged; timestamp refreshed.")
+
+    touched = sync_fallbacks(payload)
+    if touched:
+        say("Rewrote %d hard-coded fallback number(s) in index.html" % touched)
     return 0
 
 

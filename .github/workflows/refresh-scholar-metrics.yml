@@ -47,10 +47,13 @@ jobs:
           set -e
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- assets/metrics.json assets/metrics-data.js; then
+          # index.html is included because refresh_metrics.py rewrites the
+          # hard-coded fallback numbers there too, so the page still reads
+          # correctly for anyone with JavaScript disabled.
+          if git diff --quiet -- assets/metrics.json assets/metrics-data.js index.html; then
             echo "Metrics unchanged - nothing to commit."
             exit 0
           fi
-          git add assets/metrics.json assets/metrics-data.js
+          git add assets/metrics.json assets/metrics-data.js index.html
           git commit -m "chore: refresh Google Scholar metrics"
           git push

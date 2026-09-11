@@ -88,4 +88,68 @@
       );
     }
   }
+
+  /* ---------- per-publication citation counts ----------
+     refresh_metrics.py emits `citations` keyed by the literal ?q= value of each
+     "find this paper" link, so this is a plain string lookup - the title-matching
+     logic lives in one place only and cannot drift out of sync here.
+
+     A publication Scholar has not indexed yet has no key, and gets no badge at
+     all. That is deliberate: no count is better than a wrong one. For the same
+     reason an uncited paper gets no badge either - Scholar leaves its own
+     "cited by" column blank at zero, and a row of "Cited 0" pills would read as
+     a verdict rather than a measurement. */
+  var counts = data.citations;
+  if (!counts) return;
+
+  function chip(cls, text) {
+    var el = document.createElement('span');
+    el.className = cls;
+    el.textContent = text;
+    return el;
+  }
+
+  var findLinks = document.querySelectorAll('a[href*="scholar.google.com/scholar?q="]');
+  var badges = [];
+
+  for (var k = 0; k < findLinks.length; k++) {
+    var href = findLinks[k].getAttribute('href') || '';
+    var at = href.indexOf('?q=');
+    if (at === -1) continue;
+
+    var key = href.slice(at + 3);
+    if (!Object.prototype.hasOwnProperty.call(counts, key)) continue;
+
+    var n = counts[key];
+    if (!(n > 0)) continue;
+
+    var badge = chip('pub-cite', '');
+    badge.setAttribute('data-citations', n);
+    badge.appendChild(chip('en', 'Cited'));
+    badge.appendChild(chip('zh', '被引'));
+    badge.appendChild(document.createTextNode(' ' + fmt(n)));
+    findLinks[k].parentNode.insertBefore(badge, findLinks[k]);
+    badges.push(badge);
+  }
+
+  /* The tooltip has to follow the language toggle, which is just a class on
+     <body>, so re-derive it whenever that class changes. */
+  function relabel() {
+    var zh = document.body.classList.contains('lang-zh');
+    for (var b = 0; b < badges.length; b++) {
+      var count = fmt(badges[b].getAttribute('data-citations'));
+      badges[b].setAttribute(
+        'title',
+        (zh ? '谷歌学术引用 ' + count + ' 次' : 'Cited by ' + count + ' on Google Scholar') +
+          (data.updatedDisplay ? ' · ' + data.updatedDisplay : '')
+      );
+    }
+  }
+  relabel();
+  if (window.MutationObserver) {
+    new MutationObserver(relabel).observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
 })();

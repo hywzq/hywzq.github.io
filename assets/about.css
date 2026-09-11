@@ -1,5 +1,14 @@
 /* =========================================================
    Homepage (About Me) layer — matches the reference site
+
+   Type scale note: the base is 15px (html { font-size: 15px } in theme.css),
+   so one step is +0.07rem ~= +1.05px. Body/reading text sits on the scale
+   .83 / .85 / .93 / 1.0 / 1.02 / 1.05 / 1.07 / 1.09 / 1.15 rem; section
+   headings and the big Scholar numbers are deliberately outside it.
+
+   Specificity warning: theme.css declares .page__content p and .sidebar p at
+   (0,1,1), which silently beat a bare .section-lead / .about-sidebar-nav__title
+   (0,1,0). Any rule here that must actually win is written as .about-page .x.
    ========================================================= */
 
 .about-page {
@@ -26,6 +35,10 @@
 .about-sidebar-nav__title {
   margin: 0 0 .35rem;
   color: var(--muted);
+  /* .sidebar p in theme.css sets 1em at a higher specificity, so this value
+     never actually wins - the "About Me" label renders at the 15px base. Left
+     alone on purpose: the request was to enlarge the links *below* the label,
+     not the label itself. Do not "fix" this without meaning to shrink it. */
   font-size: .72rem;
   font-weight: 700;
   letter-spacing: .08em;
@@ -43,7 +56,7 @@
   border-radius: 6px;
   color: var(--ink);
   text-decoration: none;
-  font-size: .86rem;
+  font-size: .93rem;
   line-height: 1.25;
   transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease;
 }
@@ -85,11 +98,13 @@
 .about-section h1 { padding: 0; font-family: inherit; }
 .about-section h1::before { content: none; }
 
-.section-lead {
+/* Scoped to .about-page so it outranks .page__content p (0,1,1) in theme.css,
+   which would otherwise force every lead paragraph back to 1em. */
+.about-page .section-lead {
   max-width: 900px;
   margin: .65rem 0 1.2rem;
   color: var(--muted);
-  font-size: 1.02rem;
+  font-size: 1.09rem;
   line-height: 1.62;
 }
 
@@ -111,11 +126,11 @@
   box-shadow: 0 16px 42px rgba(23,32,51,.08);
   padding: 1.1rem 1.15rem;
 }
-.about-card h3 { font-size: 1.08rem; line-height: 1.35; }
+.about-card h3 { font-size: 1.15rem; line-height: 1.35; }
 .about-card p,
 .about-card li {
   color: var(--muted);
-  font-size: .95rem;
+  font-size: 1.02rem;
   line-height: 1.55;
 }
 .about-card p:last-child,
@@ -137,7 +152,7 @@
   padding: .18rem .52rem;
   color: var(--muted);
   background: var(--soft);
-  font-size: .78rem;
+  font-size: .85rem;
   line-height: 1.4;
 }
 
@@ -170,7 +185,7 @@
 .scholar-metric div > span {
   display: block;
   margin-top: .55rem;
-  font-size: .98rem;
+  font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -178,7 +193,7 @@
   display: block;
   margin-top: .45rem;
   color: rgba(255,255,255,.82);
-  font-size: .76rem;
+  font-size: .83rem;
   line-height: 1.35;
 }
 
@@ -206,11 +221,11 @@
   border-radius: 4px;
   background: var(--accent);
 }
-.compact-item strong { color: var(--ink); }
+.compact-item strong { color: var(--ink); font-size: 1.07rem; }
 .compact-item p {
   margin: .25rem 0 0;
   color: var(--muted);
-  font-size: .93rem;
+  font-size: 1rem;
   line-height: 1.48;
 }
 

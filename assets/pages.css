@@ -152,7 +152,6 @@
   letter-spacing: .02em;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
-  cursor: help;
 }
 .pub-cite:hover { background: rgba(var(--tint),.14); }
 

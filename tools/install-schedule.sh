@@ -1,26 +1,36 @@
 #!/bin/bash
 #
-# Install a macOS LaunchAgent that re-scrapes the Google Scholar metrics once a
-# day, so the numbers on the homepage stay current without any manual step.
+# Install a macOS LaunchAgent that refreshes the Google Scholar numbers and
+# publishes them several times a day, so the citation counts on the site stay
+# current without any manual step.
 #
 #   bash tools/install-schedule.sh      # install / update the schedule
 #   bash tools/uninstall-schedule.sh    # remove it again
 #
+# NOTE: this has to be run from a real Terminal window. `launchctl bootstrap` is
+# refused when driven from a sandboxed/agent shell ("Bootstrap failed: 5:
+# Input/output error"), which is why it is not done for you automatically.
+#
+# Once installed the job pushes to GitHub on its own, so the live site updates
+# without you running anything. Uninstall it if you would rather publish by hand.
+
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LABEL="com.zhenqian.scholar-metrics"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 LOG="$ROOT/tools/refresh-metrics.log"
-PYTHON="$(command -v python3 || echo /usr/bin/python3)"
 
-if [ ! -f "$ROOT/tools/refresh_metrics.py" ]; then
-  echo "ERROR: tools/refresh_metrics.py not found under $ROOT" >&2
+if [ ! -f "$ROOT/tools/refresh-and-publish.sh" ]; then
+  echo "ERROR: tools/refresh-and-publish.sh not found under $ROOT" >&2
   exit 1
 fi
 
 mkdir -p "$HOME/Library/LaunchAgents"
 
+# Every 6 hours, at :15 past. Four scrapes a day is often enough for citation
+# counts to look live, and gentle enough that Scholar is unlikely to start
+# rate-limiting the profile. Widen the gaps if you would rather it ran less.
 cat > "$PLIST" <<PLIST_EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -30,19 +40,18 @@ cat > "$PLIST" <<PLIST_EOF
   <string>$LABEL</string>
   <key>ProgramArguments</key>
   <array>
-    <string>$PYTHON</string>
-    <string>$ROOT/tools/refresh_metrics.py</string>
-    <string>--quiet</string>
+    <string>/bin/bash</string>
+    <string>$ROOT/tools/refresh-and-publish.sh</string>
   </array>
   <key>WorkingDirectory</key>
   <string>$ROOT</string>
   <key>StartCalendarInterval</key>
-  <dict>
-    <key>Hour</key>
-    <integer>9</integer>
-    <key>Minute</key>
-    <integer>15</integer>
-  </dict>
+  <array>
+    <dict><key>Hour</key><integer>0</integer><key>Minute</key><integer>15</integer></dict>
+    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>15</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>15</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>15</integer></dict>
+  </array>
   <key>StandardOutPath</key>
   <string>$LOG</string>
   <key>StandardErrorPath</key>
@@ -59,7 +68,8 @@ launchctl bootstrap "gui/$(id -u)" "$PLIST"
 launchctl enable "gui/$(id -u)/$LABEL"
 
 echo "Installed $LABEL"
-echo "  runs     : every day at 09:15 local time"
-echo "  script   : $ROOT/tools/refresh_metrics.py"
+echo "  runs     : 00:15, 06:15, 12:15 and 18:15 local time"
+echo "  does     : scrape Google Scholar, then commit + push the numbers"
 echo "  log      : $LOG"
+echo "  run now  : launchctl kickstart -k gui/$(id -u)/$LABEL"
 echo "  remove   : bash tools/uninstall-schedule.sh"

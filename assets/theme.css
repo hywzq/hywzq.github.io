@@ -241,6 +241,16 @@ body.lang-zh .en { display: none !important; }
 .author__urls .fab,
 .author__urls .ai { width: 1.1em; }
 
+/* ---------- coloured social icons ----------
+   Brand colours, so the row is scannable at a glance instead of five identical
+   grey glyphs. Keyed off the href rather than a class, so adding a link only
+   needs the right selector here to pick up its colour. */
+.author__urls a[href*="researchprofiles"] i { color: #901a1e; }  /* University of Copenhagen */
+.author__urls a[href^="mailto:"] i          { color: #c2410c; }  /* Email */
+.author__urls a[href*="scholar.google"] i   { color: #4285f4; }  /* Google Scholar */
+.author__urls a[href*="orcid.org"] i        { color: #a6ce39; }  /* ORCID */
+.author__urls a[href*="researchgate"] i     { color: #00a896; }  /* ResearchGate */
+
 .author__urls_sm { display: none; }
 
 /* =========================================================

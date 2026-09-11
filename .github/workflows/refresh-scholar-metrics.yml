@@ -56,4 +56,8 @@ jobs:
           fi
           git add assets/metrics.json assets/metrics-data.js index.html
           git commit -m "chore: refresh Google Scholar metrics"
+          # The Mac at home runs the same refresh on its own schedule (see
+          # tools/refresh-and-publish.sh), so rebase before pushing to avoid
+          # losing a race with it.
+          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push

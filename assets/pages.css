@@ -27,6 +27,7 @@
   font-size: .86rem;
   font-weight: 700;
   color: rgba(255,255,255,.82);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .publication-hero h1 {
   margin: 0;
@@ -187,6 +188,7 @@
   font-weight: 800;
   line-height: 1.2;
   list-style: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .method-group summary { padding: .95rem 2.5rem .95rem 1rem; font-size: 1em; }
 .publication-group summary::-webkit-details-marker,
@@ -502,10 +504,11 @@
 .research-detail *,
 .research-hub * { box-sizing: border-box; font-family: inherit; }
 .research-detail h1,
-.research-hub h1 { font-size: clamp(1.65rem, 3vw, 2.4rem); line-height: 1.25; margin: 1rem 0; }
+.research-hub h1 { font-size: clamp(1.65rem, 3vw, 2.4rem); line-height: 1.25; margin: 1rem 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 .research-detail h2,
-.research-hub h2 { font-size: 1.45rem; color: var(--accent-1); margin: 0 0 .8rem; border: 0; }
-.research-detail h3 { font-size: 1.16rem; line-height: 1.4; }
+.research-hub h2 { font-size: 1.45rem; color: var(--accent-1); margin: 0 0 .8rem; border: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.research-detail h3,
+.research-hub h3 { font-size: 1.16rem; line-height: 1.4; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 .research-detail section,
 .research-hub section {
   padding: 1.6rem 0;

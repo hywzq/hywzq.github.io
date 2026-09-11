@@ -20,14 +20,20 @@ body {
   margin: 0;
   padding: 0;
   color: #494e52;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  /* Body text on every page. Page wrappers (.about-page, .publication-page,
+     .research-page) keep this rule and add nothing, so headings inherit the
+     page font from <body>, and the h1..h6 rule below overrides them. */
+  font-family: "Times New Roman", Times, serif;
   line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 1em 0 .5em;
   line-height: 1.2;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  /* Every heading in the site, including those inside cards and the
+     publication/research heroes. The two-font system: body = TNR, headings
+     = Helvetica. Page wrappers do not override this. */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
 h1 { margin-top: 1em; font-size: 1.4em; }
@@ -59,7 +65,7 @@ body.lang-zh .en { display: none !important; }
   max-width: 1280px;
   margin: 0 auto;
   padding: .5em 1em;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .masthead__inner-wrap::after { clear: both; content: ""; display: table; }
 .masthead__inner-wrap a { text-decoration: none; }
@@ -142,11 +148,11 @@ body.lang-zh .en { display: none !important; }
 .sidebar::after { clear: both; content: ""; display: table; }
 .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5, .sidebar h6 {
   margin-bottom: 0;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .sidebar h3, .sidebar h4 { font-size: 1em; }
 .sidebar p, .sidebar li {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 1em;
   line-height: 1.5;
 }
@@ -206,16 +212,24 @@ body.lang-zh .en { display: none !important; }
 }
 .sidebar .author__name {
   margin: 10px 0;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.4em;
 }
-.author__bio { margin: 10px 0 20px; }
+.sidebar .author__bio {
+  margin: 10px 0 20px;
+  /* The role/institution line under the name. It is body text by tag but a
+     heading by function (it labels the person above it), so it sits in the
+     Helvetica side of the two-font system. Scoped under .sidebar so this
+     (0,2,0) actually outranks .sidebar p (0,1,1) - a bare .author__bio
+     selector would silently lose to it and render as TNR. */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 .author__urls-wrapper {
   position: relative;
   display: block;
   margin-left: auto;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   z-index: 10;
 }
 .author__urls {
@@ -235,6 +249,9 @@ body.lang-zh .en { display: none !important; }
   color: inherit;
   font-size: 1em;
   text-decoration: none;
+  /* Override the TNR that .sidebar li (0,1,1) sets on each <li> - otherwise
+     the <a> inherits TNR from its <li> parent. */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .author__urls a:hover { text-decoration: underline; }
 .author__urls .fas,

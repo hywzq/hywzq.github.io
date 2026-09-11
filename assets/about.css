@@ -1,14 +1,16 @@
 /* =========================================================
    Homepage (About Me) layer — matches the reference site
 
-   Type scale note: the base is 15px (html { font-size: 15px } in theme.css),
-   so one step is +0.07rem ~= +1.05px. Body/reading text sits on the scale
-   .83 / .85 / .93 / 1.0 / 1.02 / 1.05 / 1.07 / 1.09 / 1.15 rem; section
+   Type scale note: the base is 15px (html { font-size: 15px } in theme.css).
+   Reading text lands at .95 / 1.0 / 1.05 / 1.2 / 1.25 / 1.27 rem; section
    headings and the big Scholar numbers are deliberately outside it.
 
-   Specificity warning: theme.css declares .page__content p and .sidebar p at
-   (0,1,1), which silently beat a bare .section-lead / .about-sidebar-nav__title
-   (0,1,0). Any rule here that must actually win is written as .about-page .x.
+   Specificity warning: theme.css declares three rules that silently win
+   against this file:
+     - .page__content p / .sidebar p   (0,1,1) vs bare class selectors (0,1,0)
+     - h1/h2/h3/h4/h5/h6 font-family  (0,0,1) sets Trebuchet MS globally
+   Any rule here that must actually win is written as .about-page .x, and any
+   card heading is forced back to the page font with font-family: inherit.
    ========================================================= */
 
 .about-page {
@@ -30,20 +32,22 @@
     linear-gradient(#fff, #fff) padding-box,
     linear-gradient(135deg, rgba(var(--tint),.55), rgba(var(--warm),.48)) border-box;
   box-shadow: 0 16px 34px rgba(23,32,51,.07);
-  font-family: "Times New Roman", Times, serif;
+  /* The whole sidebar section nav is a heading/label stack, so it sits in
+     the Helvetica side of the two-font system. The title and the links
+     inherit from here. */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.about-sidebar-nav__title {
+/* Scoped under .sidebar so this (0,2,0) outranks .sidebar p (0,1,1), which
+   would otherwise force the "ABOUT ME" label back to TNR. */
+.sidebar .about-sidebar-nav__title {
   margin: 0 0 .35rem;
   color: var(--muted);
-  /* .sidebar p in theme.css sets 1em at a higher specificity, so this value
-     never actually wins - the "About Me" label renders at the 15px base. Left
-     alone on purpose: the request was to enlarge the links *below* the label,
-     not the label itself. Do not "fix" this without meaning to shrink it. */
   font-size: .72rem;
   font-weight: 700;
   letter-spacing: .08em;
   line-height: 1.2;
   text-transform: uppercase;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .about-sidebar-nav a {
   display: flex;
@@ -56,7 +60,7 @@
   border-radius: 6px;
   color: var(--ink);
   text-decoration: none;
-  font-size: .93rem;
+  font-size: 1.05rem;
   line-height: 1.25;
   transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease;
 }
@@ -89,10 +93,13 @@
 .about-card h3 {
   margin: 0;
   border: 0;
+  /* Explicit rather than `inherit` so the two-font rule (body = TNR, headings
+     = Helvetica) survives any future change to the global h1..h6 rule. */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .about-section h1,
 .about-section h2 {
-  font-size: clamp(1.28rem, 2vw, 1.72rem);
+  font-size: clamp(1.42rem, 2.2vw, 1.95rem);
   line-height: 1.2;
 }
 .about-section h1 { padding: 0; font-family: inherit; }
@@ -104,7 +111,7 @@
   max-width: 900px;
   margin: .65rem 0 1.2rem;
   color: var(--muted);
-  font-size: 1.09rem;
+  font-size: 1.25rem;
   line-height: 1.62;
 }
 
@@ -126,11 +133,11 @@
   box-shadow: 0 16px 42px rgba(23,32,51,.08);
   padding: 1.1rem 1.15rem;
 }
-.about-card h3 { font-size: 1.15rem; line-height: 1.35; }
+.about-card h3 { font-size: 1.27rem; line-height: 1.35; }
 .about-card p,
 .about-card li {
   color: var(--muted);
-  font-size: 1.02rem;
+  font-size: 1.2rem;
   line-height: 1.55;
 }
 .about-card p:last-child,
@@ -152,7 +159,7 @@
   padding: .18rem .52rem;
   color: var(--muted);
   background: var(--soft);
-  font-size: .85rem;
+  font-size: 1rem;
   line-height: 1.4;
 }
 
@@ -181,19 +188,24 @@
   font-size: clamp(2.1rem, 4vw, 3rem);
   line-height: .95;
   letter-spacing: 0;
+  /* The big number stays Times New Roman - it reads as a piece of serif
+     display data, not as a label, and putting it in Helvetica would make it
+     blend into the label above it. */
+  font-family: "Times New Roman", Times, serif;
 }
 .scholar-metric div > span {
   display: block;
   margin-top: .55rem;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.25;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .scholar-metric small {
   display: block;
   margin-top: .45rem;
   color: rgba(255,255,255,.82);
-  font-size: .83rem;
+  font-size: .95rem;
   line-height: 1.35;
 }
 
@@ -221,11 +233,11 @@
   border-radius: 4px;
   background: var(--accent);
 }
-.compact-item strong { color: var(--ink); font-size: 1.07rem; }
+.compact-item strong { color: var(--ink); font-size: 1.25rem; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 .compact-item p {
   margin: .25rem 0 0;
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.48;
 }
 

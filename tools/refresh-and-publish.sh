@@ -3,10 +3,16 @@
 # Refresh the Google Scholar numbers AND publish them, so the live site stays
 # current with no manual step.
 #
-#   bash tools/refresh-and-publish.sh
+#   bash tools/refresh-and-publish.sh            # respects the cooldown
+#   bash tools/refresh-and-publish.sh --force    # scrape no matter what
 #
-# This is what the LaunchAgent (tools/install-schedule.sh) runs. Run it by hand
-# any time you want the published numbers updated immediately.
+# This is what the LaunchAgent (tools/install-schedule.sh) runs, both on a
+# 6-hourly schedule and at login. Run it by hand any time you want the published
+# numbers updated immediately.
+#
+# The cooldown exists because the job also fires at login: without it, opening
+# the laptop five times a day would mean five scrapes. The scheduled runs are 6
+# hours apart, so a 2-hour cooldown never blocks them.
 #
 # Why this exists rather than relying on the GitHub Actions workflow alone:
 # Scholar blocks requests from datacenter IPs, and GitHub-hosted runners are
@@ -23,8 +29,34 @@ cd "$ROOT"
 
 PYTHON="$(command -v python3 || echo /usr/bin/python3)"
 FILES=(assets/metrics.json assets/metrics-data.js index.html)
+MIN_AGE_MIN=120  # skip if the numbers were refreshed this recently
+
+force=0
+for arg in "$@"; do
+  [ "$arg" = "--force" ] && force=1
+done
 
 echo "=== $(date '+%Y-%m-%d %H:%M:%S') refresh-and-publish ==="
+
+if [ "$force" -eq 0 ]; then
+  # Age of the last successful refresh, in minutes. Empty means "unknown"
+  # (missing or unparsable file) - in that case scrape rather than skip.
+  age="$("$PYTHON" - "$ROOT/assets/metrics.json" <<'PY'
+import datetime, json, sys
+try:
+    t = datetime.datetime.fromisoformat(
+        json.load(open(sys.argv[1], encoding="utf-8"))["updated"])
+except Exception:
+    print("")
+    raise SystemExit
+print(int((datetime.datetime.now(t.tzinfo) - t).total_seconds() // 60))
+PY
+)"
+  if [ -n "$age" ] && [ "$age" -lt "$MIN_AGE_MIN" ]; then
+    echo "refreshed ${age} min ago (cooldown ${MIN_AGE_MIN} min); nothing to do."
+    exit 0
+  fi
+fi
 
 if ! "$PYTHON" tools/refresh_metrics.py --quiet; then
   echo "scrape failed - leaving the published numbers as they are."

@@ -28,9 +28,10 @@ fi
 
 mkdir -p "$HOME/Library/LaunchAgents"
 
-# Every 6 hours, at :15 past. Four scrapes a day is often enough for citation
-# counts to look live, and gentle enough that Scholar is unlikely to start
-# rate-limiting the profile. Widen the gaps if you would rather it ran less.
+# Every 6 hours, at :15 past, plus once at login. Four scrapes a day is often
+# enough for citation counts to look live, and gentle enough that Scholar is
+# unlikely to start rate-limiting the profile. Widen the gaps if you would
+# rather it ran less.
 cat > "$PLIST" <<PLIST_EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -56,8 +57,12 @@ cat > "$PLIST" <<PLIST_EOF
   <string>$LOG</string>
   <key>StandardErrorPath</key>
   <string>$LOG</string>
+  <!-- Also fire at login. StartCalendarInterval alone loses a slot whenever the
+       Mac is powered off, and a laptop shut overnight misses two of the four
+       daily runs. Login covers exactly that case; the 2-hour cooldown in
+       refresh-and-publish.sh stops frequent logins from scraping repeatedly. -->
   <key>RunAtLoad</key>
-  <false/>
+  <true/>
 </dict>
 </plist>
 PLIST_EOF
@@ -68,8 +73,10 @@ launchctl bootstrap "gui/$(id -u)" "$PLIST"
 launchctl enable "gui/$(id -u)/$LABEL"
 
 echo "Installed $LABEL"
-echo "  runs     : 00:15, 06:15, 12:15 and 18:15 local time"
+echo "  runs     : at login, then 00:15, 06:15, 12:15 and 18:15 local time"
+echo "             (a run missed while the Mac is asleep happens on wake)"
 echo "  does     : scrape Google Scholar, then commit + push the numbers"
+echo "  cooldown : skips if the numbers were refreshed less than 2 h ago"
 echo "  log      : $LOG"
 echo "  run now  : launchctl kickstart -k gui/$(id -u)/$LABEL"
 echo "  remove   : bash tools/uninstall-schedule.sh"

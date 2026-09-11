@@ -551,8 +551,35 @@
   background: rgba(var(--tint),.04);
   border: 1px solid rgba(var(--tint),.18);
   border-radius: 7px;
+  /* Containing block for the "Cited N" chip, which is injected into the
+     actions row at the bottom but rendered at the top-right of the card. */
+  position: relative;
 }
 .research-hub article h3 { font-size: 1.23rem; line-height: 1.4; margin: .3rem 0; }
+
+/* Cited counts live in the actions row in the DOM (that is where metrics.js
+   puts them, next to the paper link) but are drawn pinned to the card's
+   top-right. Values match the article padding so the chip lines up with the
+   label text rather than sitting over the border. */
+.research-hub .research-actions .pub-cite {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.2rem;
+  margin-right: 0;
+}
+/* The chip sits on the card's first line, so the category label has to keep
+   clear of it - otherwise a long label ("Paleoclimate Modelling and Model
+   Development") runs underneath the number. */
+.research-hub article > .research-label { padding-right: 5.5rem; }
+
+/* Too narrow for a chip beside a centred label - drop it back into the flow. */
+@media (max-width: 620px) {
+  .research-hub .research-actions .pub-cite {
+    position: static;
+    margin-right: .4rem;
+  }
+  .research-hub article > .research-label { padding-right: 0; }
+}
 
 /* Study bodies are long-form prose, so the summary block reads left-aligned
    while the card header stays centred — centred multi-line prose is hard to read. */

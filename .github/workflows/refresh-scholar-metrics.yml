@@ -1,0 +1,56 @@
+name: Refresh Scholar metrics
+
+# Keeps the "Scholar Metrics" block on the homepage current without anyone
+# touching it. Google Scholar has no API and refuses cross-origin requests,
+# so the numbers have to be scraped with a real browser and committed back
+# into the repository.
+#
+# Requires: repo Settings -> Actions -> General -> Workflow permissions
+#           = "Read and write permissions" (the default GITHUB_TOKEN is enough).
+
+on:
+  schedule:
+    # 06:17 UTC every day. Off the hour on purpose: GitHub delays or drops
+    # scheduled runs that pile up on the hour.
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-scholar-metrics
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Scrape Google Scholar
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: python3 tools/refresh_metrics.py
+
+      - name: Commit the refreshed numbers
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- assets/metrics.json assets/metrics-data.js; then
+            echo "Metrics unchanged - nothing to commit."
+            exit 0
+          fi
+          git add assets/metrics.json assets/metrics-data.js
+          git commit -m "chore: refresh Google Scholar metrics"
+          git push

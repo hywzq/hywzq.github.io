@@ -1,0 +1,304 @@
+/* =========================================================
+   Palettes — 12 colour schemes
+   Usage: put data-palette="<slug>" on <body>
+          (or on any wrapper element to preview it locally)
+
+   Every palette defines:
+     --hero-a / --hero-b / --hero-c   hero gradient stops (rgb triplets)
+     --accent-1 .. --accent-6         card / item accent colours
+     --warm                           third stop of card borders (rgb triplet)
+     --tint                           hover tint, normally == accent-1 (rgb triplet)
+     --link                           body link colour
+     --ink / --muted / --line / --soft / --paper   neutrals
+   ========================================================= */
+
+/* ---------- shared aliases: page layers reference these names ---------- */
+:root,
+[data-palette] {
+  --teal: var(--accent-1);
+  --coral: var(--accent-2);
+  --gold: var(--accent-3);
+  --indigo: var(--accent-4);
+  --plum: var(--accent-5);
+  --green: var(--accent-6);
+  --ai: var(--accent-1);
+  --social: var(--accent-2);
+  --space: var(--accent-3);
+  --programming: var(--accent-4);
+  --modeling: var(--accent-5);
+  --macro: var(--accent-6);
+  --other: var(--accent-1);
+}
+
+/* ---------- fallback (same as 01) ---------- */
+:root {
+  --hero-a: 19,34,56;
+  --hero-b: 15,118,110;
+  --hero-c: 47,93,124;
+  --accent-1: #0f766e;
+  --accent-2: #3f6b8f;
+  --accent-3: #344a7a;
+  --accent-4: #4f6f52;
+  --accent-5: #6b3f68;
+  --accent-6: #8a6a3a;
+  --warm: 138,106,58;
+  --tint: 15,118,110;
+  --link: #224b8d;
+  --ink: #172033;
+  --muted: #5f6b7a;
+  --line: rgba(23,32,51,.13);
+  --soft: #f6f8fb;
+  --paper: #ffffff;
+}
+
+/* ---------- 01 深海墨青 ocean-ink ---------- */
+[data-palette="ocean-ink"] {
+  --hero-a: 19,34,56;
+  --hero-b: 15,118,110;
+  --hero-c: 47,93,124;
+  --accent-1: #0f766e;
+  --accent-2: #3f6b8f;
+  --accent-3: #344a7a;
+  --accent-4: #4f6f52;
+  --accent-5: #6b3f68;
+  --accent-6: #8a6a3a;
+  --warm: 138,106,58;
+  --tint: 15,118,110;
+  --link: #224b8d;
+  --ink: #172033;
+  --muted: #5f6b7a;
+  --line: rgba(23,32,51,.13);
+  --soft: #f6f8fb;
+  --paper: #ffffff;
+}
+
+/* ---------- 02 午夜靛蓝 midnight-indigo ---------- */
+[data-palette="midnight-indigo"] {
+  --hero-a: 20,26,58;
+  --hero-b: 59,74,140;
+  --hero-c: 106,90,158;
+  --accent-1: #3b4a8c;
+  --accent-2: #6a5a9e;
+  --accent-3: #46628a;
+  --accent-4: #7a4a72;
+  --accent-5: #2f7a72;
+  --accent-6: #a8791f;
+  --warm: 168,121,31;
+  --tint: 59,74,140;
+  --link: #2f3f8a;
+  --ink: #191d38;
+  --muted: #636b85;
+  --line: rgba(25,29,56,.13);
+  --soft: #f7f8fc;
+  --paper: #ffffff;
+}
+
+/* ---------- 03 森林墨绿 forest ---------- */
+[data-palette="forest"] {
+  --hero-a: 18,38,31;
+  --hero-b: 45,106,79;
+  --hero-c: 107,143,94;
+  --accent-1: #2d6a4f;
+  --accent-2: #6b8f5e;
+  --accent-3: #1f5540;
+  --accent-4: #9a6b4a;
+  --accent-5: #31706b;
+  --accent-6: #7a7a2e;
+  --warm: 154,107,74;
+  --tint: 45,106,79;
+  --link: #1f5c46;
+  --ink: #15251f;
+  --muted: #5c6b63;
+  --line: rgba(21,37,31,.13);
+  --soft: #f5f8f6;
+  --paper: #ffffff;
+}
+
+/* ---------- 04 勃艮第酒红 burgundy ---------- */
+[data-palette="burgundy"] {
+  --hero-a: 42,18,22;
+  --hero-b: 123,45,59;
+  --hero-c: 168,87,60;
+  --accent-1: #7b2d3b;
+  --accent-2: #a8573c;
+  --accent-3: #a06a7a;
+  --accent-4: #6b3f68;
+  --accent-5: #96702c;
+  --accent-6: #4a5568;
+  --warm: 150,112,44;
+  --tint: 123,45,59;
+  --link: #8a2f3f;
+  --ink: #2a171b;
+  --muted: #6b5c60;
+  --line: rgba(42,23,27,.13);
+  --soft: #fbf7f7;
+  --paper: #ffffff;
+}
+
+/* ---------- 05 石板与铜 slate-copper ---------- */
+[data-palette="slate-copper"] {
+  --hero-a: 31,41,51;
+  --hero-b: 82,96,109;
+  --hero-c: 176,106,59;
+  --accent-1: #b06a3b;
+  --accent-2: #52606d;
+  --accent-3: #3e4c59;
+  --accent-4: #35706b;
+  --accent-5: #5f7350;
+  --accent-6: #7a3b47;
+  --warm: 176,106,59;
+  --tint: 176,106,59;
+  --link: #2c5f8a;
+  --ink: #1f2933;
+  --muted: #5f6b76;
+  --line: rgba(31,41,51,.13);
+  --soft: #f7f8f9;
+  --paper: #ffffff;
+}
+
+/* ---------- 06 梅紫玫瑰 plum-rose ---------- */
+[data-palette="plum-rose"] {
+  --hero-a: 36,22,40;
+  --hero-b: 107,63,104;
+  --hero-c: 176,106,126;
+  --accent-1: #6b3f68;
+  --accent-2: #b06a7e;
+  --accent-3: #6a5a9e;
+  --accent-4: #8a6a8a;
+  --accent-5: #2f6f6a;
+  --accent-6: #a8791f;
+  --warm: 168,121,31;
+  --tint: 107,63,104;
+  --link: #6a4a8a;
+  --ink: #241726;
+  --muted: #6b5f6b;
+  --line: rgba(36,23,38,.13);
+  --soft: #faf7fa;
+  --paper: #ffffff;
+}
+
+/* ---------- 07 墨黑与金 ink-gold ---------- */
+[data-palette="ink-gold"] {
+  --hero-a: 18,22,28;
+  --hero-b: 57,66,79;
+  --hero-c: 182,130,27;
+  --accent-1: #b6821b;
+  --accent-2: #2b333d;
+  --accent-3: #55616e;
+  --accent-4: #8a6a3a;
+  --accent-5: #2f6f6a;
+  --accent-6: #7a3b47;
+  --warm: 182,130,27;
+  --tint: 182,130,27;
+  --link: #1f4a7a;
+  --ink: #14181f;
+  --muted: #5d6673;
+  --line: rgba(20,24,31,.14);
+  --soft: #f7f8f9;
+  --paper: #ffffff;
+}
+
+/* ---------- 08 深海蓝 ocean-depth ---------- */
+[data-palette="ocean-depth"] {
+  --hero-a: 11,37,69;
+  --hero-b: 19,64,116;
+  --hero-c: 91,139,181;
+  --accent-1: #134074;
+  --accent-2: #2f6da8;
+  --accent-3: #4a6f8f;
+  --accent-4: #1f7a74;
+  --accent-5: #55616e;
+  --accent-6: #a8905e;
+  --warm: 168,144,94;
+  --tint: 19,64,116;
+  --link: #1a4f8a;
+  --ink: #10233a;
+  --muted: #5a6b7d;
+  --line: rgba(16,35,58,.13);
+  --soft: #f6f9fc;
+  --paper: #ffffff;
+}
+
+/* ---------- 09 祖母绿夜 emerald ---------- */
+[data-palette="emerald"] {
+  --hero-a: 6,41,37;
+  --hero-b: 15,118,110;
+  --hero-c: 74,157,143;
+  --accent-1: #0f766e;
+  --accent-2: #3f8f7f;
+  --accent-3: #2f7a8f;
+  --accent-4: #5f7a4a;
+  --accent-5: #4a5f6b;
+  --accent-6: #9a8a3a;
+  --warm: 154,138,58;
+  --tint: 15,118,110;
+  --link: #1a6b6a;
+  --ink: #0c211f;
+  --muted: #566b68;
+  --line: rgba(12,33,31,.13);
+  --soft: #f5f9f8;
+  --paper: #ffffff;
+}
+
+/* ---------- 10 炭灰与琥珀 charcoal-amber ---------- */
+[data-palette="charcoal-amber"] {
+  --hero-a: 26,26,26;
+  --hero-b: 74,74,74;
+  --hero-c: 201,138,46;
+  --accent-1: #c98a2e;
+  --accent-2: #3a3a3a;
+  --accent-3: #5a5a5a;
+  --accent-4: #a05a3a;
+  --accent-5: #2f6f6a;
+  --accent-6: #6f7a3a;
+  --warm: 201,138,46;
+  --tint: 201,138,46;
+  --link: #2c5f8a;
+  --ink: #1c1c1c;
+  --muted: #616161;
+  --line: rgba(28,28,28,.13);
+  --soft: #f7f7f7;
+  --paper: #ffffff;
+}
+
+/* ---------- 11 雾青 mist-teal ---------- */
+[data-palette="mist-teal"] {
+  --hero-a: 30,58,63;
+  --hero-b: 63,122,118;
+  --hero-c: 122,168,160;
+  --accent-1: #3f7a76;
+  --accent-2: #6f8f7a;
+  --accent-3: #4f6b7a;
+  --accent-4: #a89670;
+  --accent-5: #7a5a72;
+  --accent-6: #a06a4a;
+  --warm: 168,150,112;
+  --tint: 63,122,118;
+  --link: #356a7a;
+  --ink: #1b2b2e;
+  --muted: #5d6f71;
+  --line: rgba(27,43,46,.13);
+  --soft: #f6f9f9;
+  --paper: #ffffff;
+}
+
+/* ---------- 12 朱砂与黛 cinnabar ---------- */
+[data-palette="cinnabar"] {
+  --hero-a: 28,28,34;
+  --hero-b: 138,58,46;
+  --hero-c: 192,122,74;
+  --accent-1: #8a3a2e;
+  --accent-2: #c07a4a;
+  --accent-3: #33383f;
+  --accent-4: #4a7a6a;
+  --accent-5: #a8863a;
+  --accent-6: #6a3f5a;
+  --warm: 168,134,58;
+  --tint: 138,58,46;
+  --link: #2a4f7a;
+  --ink: #1e1b1a;
+  --muted: #6b5f5a;
+  --line: rgba(30,27,26,.13);
+  --soft: #faf7f5;
+  --paper: #ffffff;
+}

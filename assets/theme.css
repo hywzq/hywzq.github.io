@@ -1,0 +1,281 @@
+/* =========================================================
+   Theme layer — masthead + sticky sidebar + article column
+   Rebuilt to match the reference site's Minimal Mistakes base.
+   ========================================================= */
+
+/* ---------- reset / base ---------- */
+html {
+  box-sizing: border-box;
+  background-color: #fff;
+  font-size: 15px;
+  -webkit-text-size-adjust: 100%;
+  position: relative;
+  min-height: 100%;
+}
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #494e52;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0 .5em;
+  line-height: 1.2;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-weight: bold;
+}
+h1 { margin-top: 1em; font-size: 1.4em; }
+h2 { font-size: 1.2em; }
+h3 { font-size: 1em; }
+
+p { margin: 0 0 .5em; }
+img { max-width: 100%; height: auto; border: 0; }
+ul, ol { margin: 0 0 1em; padding-left: 1.4em; }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- bilingual ---------- */
+body.lang-en .zh { display: none !important; }
+body.lang-zh .en { display: none !important; }
+
+/* =========================================================
+   Masthead
+   ========================================================= */
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: #fff;
+  border-bottom: 1px solid #f2f3f3;
+}
+.masthead__inner-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: .5em 1em;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+.masthead__inner-wrap::after { clear: both; content: ""; display: table; }
+.masthead__inner-wrap a { text-decoration: none; }
+
+.masthead__menu ul {
+  margin: 0;
+  padding: 0;
+  clear: both;
+  list-style-type: none;
+}
+.masthead__menu-item {
+  display: block;
+  list-style-type: none;
+  white-space: nowrap;
+}
+.masthead__menu-item--lg { padding-right: 2em; font-weight: 700; }
+
+.greedy-nav { position: relative; background: #fff; }
+.greedy-nav .visible-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.greedy-nav .visible-links li { display: block; }
+.greedy-nav .visible-links li:first-child { font-weight: bold; }
+.greedy-nav .visible-links li:first-child a { margin-left: 0; }
+.greedy-nav .visible-links li:last-child a { margin-right: 0; }
+
+.greedy-nav a {
+  position: relative;
+  display: block;
+  margin: 0 1rem;
+  padding: .5rem 0;
+  color: #7a8288;
+  text-decoration: none;
+}
+.greedy-nav a:hover { color: #5c6266; text-decoration: none; }
+.greedy-nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  background: #bdc1c4;
+  transform: scaleX(0);
+  transition: transform .2s ease-in-out;
+}
+.greedy-nav a:hover::before { transform: scaleX(1); }
+
+/* language toggle sits in the nav, pushed to the right */
+.masthead__menu-item--lang { margin-left: auto; }
+.masthead__menu-item--lang a {
+  color: #7a8288;
+  letter-spacing: .04em;
+  font-weight: 700;
+}
+
+/* =========================================================
+   Two-column shell
+   ========================================================= */
+#main {
+  max-width: 1280px;
+  margin: 1em auto 0;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+#main::after { clear: both; content: ""; display: table; }
+
+.sidebar {
+  clear: both;
+  width: 15.2542372881%;
+  float: left;
+  margin-right: 1.6949152542%;
+  margin-bottom: 1em;
+  padding-right: 0;
+}
+.sidebar::after { clear: both; content: ""; display: table; }
+.sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5, .sidebar h6 {
+  margin-bottom: 0;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+.sidebar h3, .sidebar h4 { font-size: 1em; }
+.sidebar p, .sidebar li {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 1em;
+  line-height: 1.5;
+}
+.sidebar img { width: 100%; }
+
+.sticky {
+  position: sticky;
+  top: 6em;
+  clear: both;
+}
+.sticky::after { clear: both; content: ""; display: table; }
+
+.page {
+  width: 83.0508474576%;
+  float: right;
+  margin-right: 0;
+  padding-left: 4.2372881356%;
+}
+.page__inner-wrap { clear: both; width: 100%; }
+.page__content h1 {
+  margin-top: 1em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #f2f3f3;
+}
+.page__content p,
+.page__content li { font-size: 1em; }
+.page__content a { text-decoration: underline; }
+
+/* =========================================================
+   Sidebar profile card
+   ========================================================= */
+.profile_box { display: block; }
+
+.author__avatar { display: block; width: auto; height: auto; }
+.author__avatar img {
+  width: 100%;
+  min-width: 75px;
+  max-width: 140px;
+  /* Square box + object-fit gives a true circle instead of stretching the
+     portrait into an ellipse, which made the head look oversized.
+     avatar.png is itself a 560x560 square head-and-shoulders crop, so nothing
+     is trimmed here — the framing is decided in the source image. Keep it
+     square or object-fit will start cropping the shoulders off again. */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  padding: 5px;
+  border: 1px solid #f2f3f3;
+  border-radius: 50%;
+}
+.author__content {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: 1;
+}
+.sidebar .author__name {
+  margin: 10px 0;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 1.4em;
+}
+.author__bio { margin: 10px 0 20px; }
+
+.author__urls-wrapper {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  z-index: 10;
+}
+.author__urls {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border: 0;
+  background: transparent;
+}
+.author__urls li { white-space: normal; }
+.author__urls a {
+  display: block;
+  margin-bottom: 5px;
+  padding: 2px 5px 2px 0;
+  color: inherit;
+  font-size: 1em;
+  text-decoration: none;
+}
+.author__urls a:hover { text-decoration: underline; }
+.author__urls .fas,
+.author__urls .fab,
+.author__urls .ai { width: 1.1em; }
+
+.author__urls_sm { display: none; }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 925px) {
+  .sidebar {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+  .sticky { position: static; top: auto; }
+  .page {
+    width: 100%;
+    float: none;
+    padding-left: 0;
+  }
+  .author__avatar img {
+    max-width: 116px;
+    margin: 0 auto;
+  }
+  .author__content,
+  .sidebar .author__name { text-align: center; }
+  .author__urls { text-align: center; }
+  .greedy-nav .visible-links { justify-content: center; }
+  .masthead__menu-item--lang { margin-left: 0; }
+}
+
+@media (max-width: 620px) {
+  html { font-size: 14px; }
+  .greedy-nav a { margin: 0 .55rem; font-size: .95em; }
+  .masthead__menu-item--lg { padding-right: .8em; }
+  #main { padding-left: .6em; padding-right: .6em; }
+}
+
+@media print {
+  .masthead { display: none; }
+}

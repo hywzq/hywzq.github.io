@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# generated screenshots from tools/shoot.py
+tools/shots/
+
+# LaunchAgent log from tools/refresh_metrics.py
+tools/refresh-metrics.log
+
+# editor scratch files
+_shoot_tmp.html
+
+# WorkBuddy workspace notes (internal, not part of the published site)
+.workbuddy-ai/

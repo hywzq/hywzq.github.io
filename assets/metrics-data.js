@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-09-12T18:15:25+02:00",
-  "updatedDisplay": "12 September 2026",
+  "updated": "2026-09-13T00:15:24+02:00",
+  "updatedDisplay": "13 September 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1343,
-    "citationsSince": 1297,
+    "citations": 1345,
+    "citationsSince": 1299,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -58,7 +58,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Seasonal to decadal variations of precipitation oxygen isotopes in northern China linked to the moisture source",
-      "citations": 42,
+      "citations": 43,
       "year": 2024
     },
     {
@@ -88,7 +88,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Discriminating the impacts of vegetation greening and climate change on the changes in evapotranspiration and transpiration fraction over the Yellow River Basin",
-      "citations": 31,
+      "citations": 32,
       "year": 2023
     },
     {
@@ -249,7 +249,7 @@ window.__SCHOLAR_METRICS__ = {
     "Miocene+African+topography+induces+decoupling+of+Somali+Jet+and+South+Asian+summer+monsoon+rainfall": 7,
     "Modelling+the+late+Pliocene+climate+with+AWI-CM3+according+to+PlioMIP3+boundary+conditions": 1,
     "Qiangtang+Plateau+high+pressure+system+and+Indian+summer+monsoon+co-regulated+natural+dust+storm+activity+on+the+southern+Tibetan+Plateau+during+the+Holocene": 5,
-    "Seasonal+to+decadal+variations+of+precipitation+oxygen+isotopes+in+northern+China+linked+to+the+moisture+source": 42,
+    "Seasonal+to+decadal+variations+of+precipitation+oxygen+isotopes+in+northern+China+linked+to+the+moisture+source": 43,
     "Holocene+forcing+of+aeolian+dust+activity+over+the+Tibetan+Plateau+and+its+surroundings": 32,
     "Spatiotemporal+differences+in+Holocene+climate+change+in+the+Yarlung+Tsangpo+catchment%2C+southern+Tibetan+Plateau%2C+reconstructed+from+two+sandy+loess+sequences": 20,
     "Rapid+retreat+of+the+East+Asian+summer+monsoon+on+the+western+Chinese+loess+Plateau+during+the+middle+to+late+Holocene+and+its+environmental+and+societal+implications": 8,
@@ -268,7 +268,7 @@ window.__SCHOLAR_METRICS__ = {
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin%3A+Role+of+climate+and+vegetation": 5,
     "Quantifying+the+impact+of+vegetation+greening+on+evapotranspiration+and+its+components+on+the+Tibetan+Plateau": 3,
     "Quantifying+the+spatiotemporal+changes+in+evapotranspiration+and+its+components+driven+by+vegetation+greening+and+climate+change+in+the+northern+foot+of+Yinshan+Mountain": 15,
-    "Discriminating+the+impacts+of+vegetation+greening+and+climate+change+on+the+changes+in+evapotranspiration+and+transpiration+fraction+over+the+Yellow+River+Basin": 31,
+    "Discriminating+the+impacts+of+vegetation+greening+and+climate+change+on+the+changes+in+evapotranspiration+and+transpiration+fraction+over+the+Yellow+River+Basin": 32,
     "Untangling+the+effects+of+climate+variation+and+human+interference+on+grassland+dynamics+in+North+China": 17,
     "Vegetation+response+to+changes+in+climate+across+different+climate+zones+in+China": 90,
     "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 28,

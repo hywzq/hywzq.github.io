@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-09-14T12:44:24+00:00",
-  "updatedDisplay": "14 September 2026",
+  "updated": "2026-09-15T11:42:59+00:00",
+  "updatedDisplay": "15 September 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1345,
-    "citationsSince": 1299,
+    "citations": 1348,
+    "citationsSince": 1302,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -48,7 +48,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Fewer basins will follow their budyko curves under global warming and fossil‐fueled development",
-      "citations": 46,
+      "citations": 47,
       "year": 2022
     },
     {
@@ -68,7 +68,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Northward migration of the East Asian summer monsoon northern boundary during the twenty-first century",
-      "citations": 36,
+      "citations": 37,
       "year": 2022
     },
     {
@@ -132,14 +132,14 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2020
     },
     {
+      "title": "Miocene African topography induces decoupling of Somali Jet and South Asian summer monsoon rainfall",
+      "citations": 8,
+      "year": 2025
+    },
+    {
       "title": "Rapid retreat of the East Asian summer monsoon on the western Chinese loess Plateau during the middle to late Holocene and its environmental and societal implications",
       "citations": 8,
       "year": 2023
-    },
-    {
-      "title": "Miocene African topography induces decoupling of Somali Jet and South Asian summer monsoon rainfall",
-      "citations": 7,
-      "year": 2025
     },
     {
       "title": "Westerlies and monsoon climate systems shape Holocene moisture patterns in the southern Tibetan Plateau: Evidence from aeolian sedimentary records",
@@ -241,19 +241,19 @@ window.__SCHOLAR_METRICS__ = {
     "Differential+vegetation+feedback+on+the+global+land+monsoon+system+during+the+Mid-Holocene+and+Last+Interglacial": 4,
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
-    "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 36,
+    "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 37,
     "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 104,
     "Changes+in+the+north+boundary+of+the+East+Asian+summer+monsoon+in+interglacials+of+last+800+ka": 10,
     "Dynamic+and+thermodynamic+mechanisms+of+Miocene+South+Asian+summer+monsoon+rainfall+enhancement+driven+by+African+topography+evolution": 0,
     "Influence+of+the+East+African+uplift+on+middle+Miocene+faunal+transitions": 3,
-    "Miocene+African+topography+induces+decoupling+of+Somali+Jet+and+South+Asian+summer+monsoon+rainfall": 7,
+    "Miocene+African+topography+induces+decoupling+of+Somali+Jet+and+South+Asian+summer+monsoon+rainfall": 8,
     "Modelling+the+late+Pliocene+climate+with+AWI-CM3+according+to+PlioMIP3+boundary+conditions": 1,
     "Qiangtang+Plateau+high+pressure+system+and+Indian+summer+monsoon+co-regulated+natural+dust+storm+activity+on+the+southern+Tibetan+Plateau+during+the+Holocene": 5,
     "Seasonal+to+decadal+variations+of+precipitation+oxygen+isotopes+in+northern+China+linked+to+the+moisture+source": 43,
     "Holocene+forcing+of+aeolian+dust+activity+over+the+Tibetan+Plateau+and+its+surroundings": 32,
     "Spatiotemporal+differences+in+Holocene+climate+change+in+the+Yarlung+Tsangpo+catchment%2C+southern+Tibetan+Plateau%2C+reconstructed+from+two+sandy+loess+sequences": 20,
     "Rapid+retreat+of+the+East+Asian+summer+monsoon+on+the+western+Chinese+loess+Plateau+during+the+middle+to+late+Holocene+and+its+environmental+and+societal+implications": 8,
-    "Fewer+basins+will+follow+their+Budyko+curves+under+global+warming+and+fossil-fueled+development": 46,
+    "Fewer+basins+will+follow+their+Budyko+curves+under+global+warming+and+fossil-fueled+development": 47,
     "Influence+of+May%E2%80%93June+frontal+precipitation+on+coherent+moisture+pattern+in+east-central+China+since+1793+based+on+tree-ring+data": 4,
     "Linking+moisture+and+near-surface+wind+with+winter+temperature+to+reveal+the+Holocene+climate+evolution+in+arid+Xinjiang+region+of+China": 21,
     "A+data-model+comparison+pinpoints+Holocene+spatiotemporal+pattern+of+East+Asian+summer+monsoon": 178,

@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-09-19T10:57:09+00:00",
-  "updatedDisplay": "19 September 2026",
+  "updated": "2026-09-20T11:21:42+00:00",
+  "updatedDisplay": "20 September 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1348,
-    "citationsSince": 1302,
+    "citations": 1351,
+    "citationsSince": 1305,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -18,17 +18,17 @@ window.__SCHOLAR_METRICS__ = {
   "papers": [
     {
       "title": "Assessing the effects of climate variation and human activities on grassland degradation and restoration across the globe",
-      "citations": 183,
+      "citations": 184,
       "year": 2019
     },
     {
       "title": "A data-model comparison pinpoints Holocene spatiotemporal pattern of East Asian summer monsoon",
-      "citations": 178,
+      "citations": 179,
       "year": 2021
     },
     {
       "title": "Grassland dynamics in responses to climate variation and human activities in China from 2000 to 2013",
-      "citations": 177,
+      "citations": 178,
       "year": 2019
     },
     {
@@ -256,7 +256,7 @@ window.__SCHOLAR_METRICS__ = {
     "Fewer+basins+will+follow+their+Budyko+curves+under+global+warming+and+fossil-fueled+development": 47,
     "Influence+of+May%E2%80%93June+frontal+precipitation+on+coherent+moisture+pattern+in+east-central+China+since+1793+based+on+tree-ring+data": 4,
     "Linking+moisture+and+near-surface+wind+with+winter+temperature+to+reveal+the+Holocene+climate+evolution+in+arid+Xinjiang+region+of+China": 21,
-    "A+data-model+comparison+pinpoints+Holocene+spatiotemporal+pattern+of+East+Asian+summer+monsoon": 178,
+    "A+data-model+comparison+pinpoints+Holocene+spatiotemporal+pattern+of+East+Asian+summer+monsoon": 179,
     "Holocene+moisture+evolution+and+its+response+to+atmospheric+circulation+recorded+by+aeolian+deposits+in+the+southern+Tibetan+Plateau": 42,
     "Moisture+variation+inferred+from+tree+rings+in+north+central+China+and+its+links+with+the+remote+oceans": 10,
     "Vegetation+history+and+precipitation+changes+in+the+NE+Qinghai-Tibet+Plateau%3A+a+7%2C900-yr+pollen+record+from+Caodalian+Lake": 44,
@@ -273,8 +273,8 @@ window.__SCHOLAR_METRICS__ = {
     "Vegetation+response+to+changes+in+climate+across+different+climate+zones+in+China": 90,
     "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 28,
     "Untangling+the+effects+of+management+measures%2C+climate+and+land+use+cover+change+on+grassland+dynamics+in+the+Qinghai-Tibet+Plateau%2C+China": 33,
-    "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 183,
-    "Grassland+dynamics+in+responses+to+climate+variation+and+human+activities+in+China+from+2000+to+2013": 177,
+    "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 184,
+    "Grassland+dynamics+in+responses+to+climate+variation+and+human+activities+in+China+from+2000+to+2013": 178,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin+Role+of+climate+and+vegetation": 5
   },
   "citationMatches": {

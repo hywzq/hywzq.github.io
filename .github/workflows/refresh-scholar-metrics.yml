@@ -1,26 +1,29 @@
 name: Refresh Scholar metrics
 
-# Manual backstop for the Mac's own scheduler (tools/refresh-and-publish.sh,
-# installed with tools/install-schedule.sh). Google Scholar has no API and
-# refuses cross-origin requests, so the numbers have to be scraped with a real
-# browser and committed back into the repository.
+# Backstop for the Mac's own scheduler (tools/refresh-and-publish.sh, installed
+# with tools/install-schedule.sh). Google Scholar has no API and refuses
+# cross-origin requests, so the numbers have to be scraped with a real browser
+# and committed back into the repository.
 #
-# There used to be a daily cron here. It was removed on 2026-09-21 for two
-# reasons:
-#   1. GitHub-hosted runners come from datacenter IP ranges, which Google
-#      Scholar blocks intermittently - the scrape step failed roughly one run
-#      in three, and every failure sent a "Run failed" email.
-#   2. When it did succeed it committed the same generated files the Mac was
-#      committing. The two writers raced; the Mac's rebase hit a conflict in
-#      assets/metrics.json every six hours and silently gave up ("committed
-#      locally, not published"), so the live site froze.
-# Trigger it by hand (Actions -> Refresh Scholar metrics -> Run workflow) if
-# the Mac is going to be off for a while.
+# Two rules keep this from fighting the Mac, which refreshes every six hours:
+#
+#   1. It only does anything when the published numbers are more than 20 h old -
+#      i.e. only when the Mac has clearly stopped. Day to day this job is a no-op.
+#   2. The scrape step is continue-on-error. GitHub-hosted runners sit on
+#      datacenter IP ranges that Google Scholar blocks intermittently (roughly
+#      one run in three), and there is nothing to fix when that happens. Letting
+#      it fail the workflow only produced a daily "Run failed" email.
+#
+# Trigger it by hand any time: Actions -> Refresh Scholar metrics -> Run workflow.
 #
 # Requires: repo Settings -> Actions -> General -> Workflow permissions
 #           = "Read and write permissions" (the default GITHUB_TOKEN is enough).
 
 on:
+  schedule:
+    # 06:17 UTC every day. Off the hour on purpose: GitHub delays or drops
+    # scheduled runs that pile up on the hour.
+    - cron: "17 6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -45,27 +48,65 @@ jobs:
         with:
           chrome-version: stable
 
+      # Step in only when the Mac has stopped refreshing. Comparing against the
+      # timestamp inside the data file (rather than "was there a recent commit")
+      # means a genuine 20-hour gap is what matters, not who committed last.
+      - name: Is a refresh needed?
+        id: gate
+        run: |
+          needed="$(python3 - <<'PY'
+          import datetime, json
+          try:
+              t = datetime.datetime.fromisoformat(
+                  json.load(open("assets/metrics.json", encoding="utf-8"))["updated"])
+          except Exception:
+              print("true")            # no usable timestamp - refresh anyway
+              raise SystemExit
+          if t.tzinfo is None:
+              t = t.replace(tzinfo=datetime.timezone.utc)
+          age = (datetime.datetime.now(datetime.timezone.utc) - t).total_seconds() / 3600
+          print("false" if age < 20 else "true")
+          PY
+          )"
+          echo "needed=$needed" >> "$GITHUB_OUTPUT"
+          echo "refresh needed: $needed"
+
       - name: Scrape Google Scholar
+        if: steps.gate.outputs.needed == 'true'
+        id: scrape
+        continue-on-error: true
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         run: python3 tools/refresh_metrics.py
 
       - name: Commit the refreshed numbers
+        if: steps.gate.outputs.needed == 'true' && steps.scrape.outcome == 'success'
         run: |
           set -e
+          FILES="assets/metrics.json assets/metrics-data.js index.html"
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # index.html is included because refresh_metrics.py rewrites the
           # hard-coded fallback numbers there too, so the page still reads
           # correctly for anyone with JavaScript disabled.
-          if git diff --quiet -- assets/metrics.json assets/metrics-data.js index.html; then
+          if git diff --quiet -- $FILES; then
             echo "Metrics unchanged - nothing to commit."
             exit 0
           fi
-          git add assets/metrics.json assets/metrics-data.js index.html
+          git add $FILES
           git commit -m "chore: refresh Google Scholar metrics"
-          # The Mac at home runs the same refresh on its own schedule (see
-          # tools/refresh-and-publish.sh), so rebase before pushing to avoid
-          # losing a race with it.
-          git pull --rebase origin "${GITHUB_REF_NAME}"
-          git push
+          # The Mac may have pushed in the meantime, or woken up mid-run. These
+          # files are regenerated in full on every run, so if they conflict there
+          # is nothing to reconcile: keep the version just scraped. (During a
+          # rebase "theirs" is our own commit.)
+          if ! git push origin "HEAD:${GITHUB_REF_NAME}"; then
+            git fetch origin "${GITHUB_REF_NAME}"
+            if ! git rebase "origin/${GITHUB_REF_NAME}"; then
+              for f in $FILES; do
+                git checkout --theirs -- "$f" 2>/dev/null || true
+                git add -- "$f" 2>/dev/null || true
+              done
+              git -c core.editor=true rebase --continue
+            fi
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

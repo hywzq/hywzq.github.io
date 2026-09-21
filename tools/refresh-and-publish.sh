@@ -14,10 +14,11 @@
 # the laptop five times a day would mean five scrapes. The scheduled runs are 6
 # hours apart, so a 2-hour cooldown never blocks them.
 #
-# Why this exists rather than relying on the GitHub Actions workflow alone:
-# Scholar blocks requests from datacenter IPs, and GitHub-hosted runners are
-# datacenter IPs. Scraping from this machine works because it goes out on a home
-# connection. The workflow is kept as a backstop for when the Mac is off.
+# Why this exists rather than relying on the GitHub Actions workflow: Scholar
+# blocks requests from datacenter IPs, and GitHub-hosted runners are datacenter
+# IPs. Scraping from this machine works because it goes out on a home
+# connection. The workflow (refresh-scholar-metrics.yml) is now manual-only:
+# run it from the Actions page if the Mac will be off for a while.
 #
 # Only the three generated files are ever committed, so work in progress is left
 # alone and a dirty tree does not stop publishing.
@@ -85,8 +86,22 @@ fi
 echo "remote has moved on; rebasing before retrying."
 git fetch -q origin main
 if ! git rebase -q origin/main 2>/dev/null; then
-  git rebase --abort >/dev/null 2>&1 || true
-  echo "could not rebase cleanly (work in progress?) - committed locally, not published."
-  exit 0
+  # These three files are regenerated in full on every run, so if the remote
+  # also rewrote them there is nothing to reconcile - the version we just
+  # scraped supersedes whatever is in the other commit. (During a rebase
+  # "theirs" is our own commit, "ours" is the branch we are replaying onto.)
+  #
+  # Aborting here instead is what went wrong on 2026-09-21: the remote kept
+  # moving, every retry conflicted again, and 27 unpublished commits piled up
+  # while the live site silently froze.
+  for f in "${FILES[@]}"; do
+    git checkout --theirs -- "$f" 2>/dev/null || true
+    git add -- "$f" 2>/dev/null || true
+  done
+  if ! git -c core.editor=true rebase --continue >/dev/null 2>&1; then
+    git rebase --abort >/dev/null 2>&1 || true
+    echo "could not rebase cleanly - committed locally, not published."
+    exit 0
+  fi
 fi
 git push -q origin HEAD:main && echo "published."

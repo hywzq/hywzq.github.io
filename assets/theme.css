@@ -44,6 +44,11 @@ p { margin: 0 0 .5em; }
 img { max-width: 100%; height: auto; border: 0; }
 ul, ol { margin: 0 0 1em; padding-left: 1.4em; }
 
+/* Flagship journals. Every journal name in the publication lists is italic;
+   these are the ones that should stand out, so they are bold as well. Applied
+   on all four pages, hence a shared rule rather than one in pages.css. */
+.journal-top { font-weight: 700; }
+
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 

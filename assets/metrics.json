@@ -1,12 +1,12 @@
 {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-09-25T06:15:17+02:00",
+  "updated": "2026-09-25T12:15:14+02:00",
   "updatedDisplay": "25 September 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1351,
-    "citationsSince": 1305,
+    "citations": 1352,
+    "citationsSince": 1307,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -75,14 +75,14 @@
       "year": 2020
     },
     {
+      "title": "Holocene forcing of aeolian dust activity over the Tibetan Plateau and its surroundings",
+      "citations": 33,
+      "year": 2024
+    },
+    {
       "title": "Untangling the effects of management measures, climate and land use cover change on grassland dynamics in the Qinghai–Tibet Plateau, China",
       "citations": 33,
       "year": 2021
-    },
-    {
-      "title": "Holocene forcing of aeolian dust activity over the Tibetan Plateau and its surroundings",
-      "citations": 32,
-      "year": 2024
     },
     {
       "title": "Discriminating the impacts of vegetation greening and climate change on the changes in evapotranspiration and transpiration fraction over the Yellow River Basin",
@@ -248,7 +248,7 @@
     "Modelling+the+late+Pliocene+climate+with+AWI-CM3+according+to+PlioMIP3+boundary+conditions": 1,
     "Qiangtang+Plateau+high+pressure+system+and+Indian+summer+monsoon+co-regulated+natural+dust+storm+activity+on+the+southern+Tibetan+Plateau+during+the+Holocene": 5,
     "Seasonal+to+decadal+variations+of+precipitation+oxygen+isotopes+in+northern+China+linked+to+the+moisture+source": 43,
-    "Holocene+forcing+of+aeolian+dust+activity+over+the+Tibetan+Plateau+and+its+surroundings": 32,
+    "Holocene+forcing+of+aeolian+dust+activity+over+the+Tibetan+Plateau+and+its+surroundings": 33,
     "Spatiotemporal+differences+in+Holocene+climate+change+in+the+Yarlung+Tsangpo+catchment%2C+southern+Tibetan+Plateau%2C+reconstructed+from+two+sandy+loess+sequences": 20,
     "Rapid+retreat+of+the+East+Asian+summer+monsoon+on+the+western+Chinese+loess+Plateau+during+the+middle+to+late+Holocene+and+its+environmental+and+societal+implications": 8,
     "Fewer+basins+will+follow+their+Budyko+curves+under+global+warming+and+fossil-fueled+development": 47,

@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-09-28T00:15:17+02:00",
+  "updated": "2026-09-28T06:15:17+02:00",
   "updatedDisplay": "28 September 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1359,
-    "citationsSince": 1314,
+    "citations": 1361,
+    "citationsSince": 1316,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -68,7 +68,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Northward migration of the East Asian summer monsoon northern boundary during the twenty-first century",
-      "citations": 37,
+      "citations": 38,
       "year": 2022
     },
     {
@@ -162,6 +162,11 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2026
     },
     {
+      "title": "East African uplift as a catalyst for Middle Miocene faunal transitions",
+      "citations": 4,
+      "year": 2025
+    },
+    {
       "title": "Influence of May–June frontal precipitation on coherent moisture pattern in east-central China since 1793 based on tree-ring data",
       "citations": 4,
       "year": 2022
@@ -170,11 +175,6 @@ window.__SCHOLAR_METRICS__ = {
       "title": "Quantifying the changes in soil moisture caused by vegetation greening and climate change across different drought gradient in China",
       "citations": 3,
       "year": 2026
-    },
-    {
-      "title": "East African uplift as a catalyst for Middle Miocene faunal transitions",
-      "citations": 3,
-      "year": 2025
     },
     {
       "title": "Quantifying the impact of vegetation greening on evapotranspiration and its components on the Tibetan Plateau",
@@ -241,11 +241,11 @@ window.__SCHOLAR_METRICS__ = {
     "Differential+vegetation+feedback+on+the+global+land+monsoon+system+during+the+Mid-Holocene+and+Last+Interglacial": 4,
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
-    "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 37,
+    "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 38,
     "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 104,
     "Changes+in+the+north+boundary+of+the+East+Asian+summer+monsoon+in+interglacials+of+last+800+ka": 10,
     "Dynamic+and+thermodynamic+mechanisms+of+Miocene+South+Asian+summer+monsoon+rainfall+enhancement+driven+by+African+topography+evolution": 0,
-    "Influence+of+the+East+African+uplift+on+middle+Miocene+faunal+transitions": 3,
+    "Influence+of+the+East+African+uplift+on+middle+Miocene+faunal+transitions": 4,
     "Miocene+African+topography+induces+decoupling+of+Somali+Jet+and+South+Asian+summer+monsoon+rainfall": 8,
     "Modelling+the+late+Pliocene+climate+with+AWI-CM3+according+to+PlioMIP3+boundary+conditions": 1,
     "Qiangtang+Plateau+high+pressure+system+and+Indian+summer+monsoon+co-regulated+natural+dust+storm+activity+on+the+southern+Tibetan+Plateau+during+the+Holocene": 6,

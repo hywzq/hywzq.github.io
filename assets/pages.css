@@ -29,7 +29,8 @@
   color: rgba(255,255,255,.82);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.publication-hero h1 {
+.publication-hero h1,
+.research-hero h1 {
   margin: 0;
   color: #fff;
   border: 0;
@@ -277,12 +278,12 @@
 }
 .research-hero > * { position: relative; z-index: 1; }
 .research-hero .hero-lead {
-  max-width: 900px;
-  margin: 0;
-  color: rgba(255,255,255,.92);
-  font-size: clamp(1.2rem, 2.6vw, 1.72rem);
-  line-height: 1.55;
-  font-weight: 700;
+  max-width: 1220px;
+  margin: 1rem 0 0;
+  color: rgba(255,255,255,.9);
+  font-size: 1rem;
+  line-height: 1.62;
+  font-weight: 400;
 }
 
 .research-metrics {

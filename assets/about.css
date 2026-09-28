@@ -144,6 +144,11 @@
 .about-card ul:last-child { margin-bottom: 0; }
 .about-card ul { margin: .75rem 0 0; padding-left: 1.1rem; }
 
+/* The two profile cards carry the longest body copy on the page; justifying it
+   makes both text edges flush. Scoped as .profile-grid .about-card p (0,2,1) so
+   it outranks .page__content p (0,1,1) in theme.css. */
+.profile-grid .about-card p { text-align: justify; }
+
 /* ---------- tag pills ---------- */
 .tag-row {
   display: flex;

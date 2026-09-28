@@ -23,7 +23,7 @@ PAGES = {
         ["kicker",             ".publication-kicker"],
         ["section h2 (First)", "h2#first-and-corresponding-author"],
         ["section h2 (Under)", "details.publication-group summary"],
-        ["section h2 (Climate)","h2#climate-modelling-and-paleoclimate"],
+        ["section h2 (Climate)","h2#climate-dynamics-earth-system-modelling-and-paleoclimate"],
         ["section h2 (Ecology)","h2#ecology"],
         ["publication list li", "#first-and-corresponding-author li"],
         ["pub-note badge",     ".pub-note"],

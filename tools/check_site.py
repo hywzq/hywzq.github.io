@@ -190,6 +190,54 @@ else:
                 % (key, m.group(1), payload["scholar"][key])
             )
 
+# 6. publication counts -------------------------------------------------------
+# The numbers in the hero sentence and the metric cards are counted from the list
+# itself by assets/counts.js, so a stale value is cosmetic rather than fatal - but
+# it is what a crawler or a no-JS reader sees, so report any drift.
+pub = pages.get("publications.html")
+if pub:
+    GROUPS = [
+        "first-and-corresponding-author",
+        "under-review-and-submitted",
+        "climate-dynamics-earth-system-modelling-and-paleoclimate",
+        "ecology",
+    ]
+    IN_PROGRESS_RE = re.compile(r"under review|submitted|in revising", re.I)
+    group_items = {}
+    for gid in GROUPS:
+        # the group's heading, then everything up to the next heading / details block
+        m = re.search(
+            r'<h2 id="%s".*?</h2>(.*?)(?=<h2 id=|<details|</section>|\Z)' % re.escape(gid),
+            pub,
+            re.S,
+        )
+        group_items[gid] = re.findall(r"<li\b.*?</li>", m.group(1) if m else "", re.S)
+
+    total = sum(len(v) for v in group_items.values())
+    in_progress = 0
+    for items in group_items.values():
+        for it in items:
+            note = re.search(r'<span class="pub-note"[^>]*>(.*?)</span>', it, re.S)
+            if note and IN_PROGRESS_RE.search(note.group(1)):
+                in_progress += 1
+
+    expected = {
+        "first-author": len(group_items[GROUPS[0]]),
+        "total": total,
+        "in-progress": in_progress,
+    }
+    notes.append(
+        "publication counts: %d first/corresponding, %d total, %d in progress"
+        % (expected["first-author"], total, in_progress)
+    )
+    for key, actual in expected.items():
+        for shown in sorted(set(re.findall(r'data-pub-count="%s"[^>]*>([\d,]+)<' % key, pub))):
+            if shown.replace(",", "") != str(actual):
+                notes.append(
+                    "fallback for pub-count %s is %s but the list has %d "
+                    "(assets/counts.js overwrites it)" % (key, shown, actual)
+                )
+
 # ----------------------------------------------------------------- report ----
 for n in notes:
     print("  .", n)

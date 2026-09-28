@@ -453,9 +453,7 @@
 .paper-card {
   position: relative;
   padding: 1rem 1.05rem 1rem 1.15rem;
-  transition: transform .2s ease, box-shadow .2s ease;
 }
-.paper-card:hover { transform: translateY(-3px); box-shadow: 0 20px 46px rgba(23,32,51,.12); }
 .paper-card::before {
   content: "";
   position: absolute;
@@ -472,22 +470,35 @@
   margin: 0 0 .55rem;
   font-size: 1.02rem;
   line-height: 1.35;
-  transition: color .2s ease;
 }
-.paper-card:hover h3 { color: var(--accent); }
-.paper-card-link {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  display: block;
-  border-radius: 8px;
-}
-.paper-card-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+/* The whole card used to be one big <a> to publications.html, which dropped the
+   reader at the top of that list rather than at the paper. The card is inert
+   now - the only action is the Find it link in the bottom-right corner - so the
+   hover lift and heading recolour that advertised "click me" are gone as well. */
 .paper-card p,
 .paper-card h3,
-.paper-tags { position: relative; z-index: 2; pointer-events: none; }
+.paper-tags { position: relative; z-index: 2; }
 .paper-card p { margin: 0; color: var(--muted); font-size: .94rem; line-height: 1.52; }
-.paper-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .78rem; }
+.paper-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+.paper-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-top: .78rem;
+}
+.paper-foot .paper-tags { margin-top: 0; flex: 1 1 auto; min-width: 0; }
+.paper-find {
+  flex: none;
+  align-self: flex-end;
+  white-space: nowrap;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+.paper-find:hover { text-decoration: underline; }
 
 /* =========================================================
    4. Research highlights hub

@@ -238,6 +238,135 @@ if pub:
                     "(assets/counts.js overwrites it)" % (key, shown, actual)
                 )
 
+# 7. publication-count claims on the other pages ------------------------------
+# publications.html derives its numbers from the list itself (assets/counts.js).
+# The other pages cannot - there is no list on them - so their numbers are
+# hand-written and drift silently. This is NOT a cosmetic fallback like section
+# 6: nothing overwrites these at runtime, so a stale value is what the reader
+# actually sees. Treat drift as a failure.
+if pub:
+    claims = [
+        (
+            re.compile(r"([\d,]{1,4})\s*(?:journal papers|篇期刊论文)", re.I),
+            total,
+            "journal papers",
+        ),
+        (
+            re.compile(
+                r"([\d,]{1,4})\s*(?:first- and corresponding-author papers|"
+                r"第一作者与通讯作者论文)",
+                re.I,
+            ),
+            len(group_items[GROUPS[0]]),
+            "first/corresponding-author papers",
+        ),
+    ]
+    for name, html in pages.items():
+        if name == "publications.html":
+            continue
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
+        for rx, want, label in claims:
+            for m in rx.finditer(text):
+                shown = m.group(1).replace(",", "")
+                if shown != str(want):
+                    fail(
+                        "%s: says %s %s but the list has %d"
+                        % (name, shown, label, want)
+                    )
+
+# 8. paper cards / study summaries vs the publication list --------------------
+# research-highlights.html (study summaries) and research.html (the paper cards
+# under each direction) both restate a paper's journal and status. The count
+# check (7) cannot see that, and this is exactly how the pages drifted on
+# 2026-09-28: the list said "Science Advances / Under review" while both pages
+# still said "Nature Climate Change / submitted".
+if pub:
+    pub_entries = []
+    for gid in GROUPS:
+        m = re.search(
+            r'<h2 id="%s".*?</h2>(.*?)(?=<h2 id=|<details|</section>|\Z)' % re.escape(gid),
+            pub,
+            re.S,
+        )
+        for li in re.findall(r"<li\b.*?</li>", m.group(1) if m else "", re.S):
+            em = re.search(r"<em[^>]*>(.*?)</em>", li, re.S)
+            note = re.search(r'<span class="pub-note"[^>]*>(.*?)</span>', li, re.S)
+            pub_entries.append(
+                {"text": li, "journal": em.group(1) if em else "",
+                 "note": note.group(1) if note else ""}
+            )
+
+    def plain(s):
+        s = re.sub(r"<[^>]+>", " ", s)
+        for a, b in (("&ndash;", "-"), ("&mdash;", "-"), ("&amp;", "&"),
+                     ("&#8217;", "'"), ("\u2013", "-"), ("\u2014", "-")):
+            s = s.replace(a, b)
+        return re.sub(r"\s+", " ", s).strip()
+
+    def key(s):
+        return re.sub(r"[^a-z0-9]+", "", plain(s).lower())
+
+    # The card writes the state in parentheses ("… 2026 (under review)."); the
+    # list writes it bare in a .pub-note span ("Under review"). Two patterns.
+    CARD_STATUS_RE = re.compile(r"\((in revising|under review|submitted)\)", re.I)
+    NOTE_STATUS_RE = re.compile(r"^(in revising|under review|submitted)$", re.I)
+
+    cards = []
+    hi = pages.get("research-highlights.html")
+    if hi:
+        studies = re.search(r'<section id="studies".*?</section>', hi, re.S)
+        if studies:
+            for art in re.findall(r"<article[^>]*>(.*?)</article>", studies.group(0), re.S):
+                h3 = re.search(r"<h3[^>]*>(.*?)</h3>", art, re.S)
+                cite = re.search(r'<p class="research-citation"[^>]*>(.*?)</p>', art, re.S)
+                if h3 and cite:
+                    cards.append(("research-highlights.html", h3.group(1), cite.group(1)))
+    rp = pages.get("research.html")
+    if rp:
+        for card in re.findall(r'<article class="paper-card".*?</article>', rp, re.S):
+            h3 = re.search(r"<h3[^>]*>(.*?)</h3>", card, re.S)
+            cite = re.search(r"<p [^>]*>(.*?)</p>", card, re.S)
+            if h3 and cite:
+                cards.append(("research.html", h3.group(1), cite.group(1)))
+
+    for page, title_html, cite_html in cards:
+        shown_em = re.search(r"<em[^>]*>(.*?)</em>", cite_html, re.S)
+        if not shown_em:
+            continue
+        want = key(title_html)
+        listed = next((e for e in pub_entries if want and want in key(e["text"])), None)
+        name = plain(title_html)[:48]
+        if listed is None:
+            notes.append("%s: card not in the publication list: %s" % (page, name))
+            continue
+        if key(shown_em.group(1)) != key(listed["journal"]):
+            fail(
+                "%s: '%s' says %s but the list says %s"
+                % (page, name, plain(shown_em.group(1)), plain(listed["journal"]))
+            )
+        # Status only counts as a status if it is one of the review states -
+        # "In Chinese" / "Highly Cited Paper" are annotations, not states, and
+        # the cards are not expected to carry them.
+        head = cite_html.split('<span class="en"')[0]
+        shown_status = CARD_STATUS_RE.search(plain(head))
+        listed_status = NOTE_STATUS_RE.search(plain(listed["note"]).strip())
+        if shown_status and listed_status:
+            if shown_status.group(1).lower() != listed_status.group(1).lower():
+                fail(
+                    "%s: '%s' says (%s) but the list says %s"
+                    % (page, name, shown_status.group(1), plain(listed["note"]))
+                )
+        elif shown_status and not listed_status:
+            fail(
+                "%s: '%s' says (%s) but the list carries no such status"
+                % (page, name, shown_status.group(1))
+            )
+        elif listed_status and not shown_status:
+            notes.append(
+                "%s: '%s' is %s in the list but the card shows no status"
+                % (page, name, plain(listed["note"]))
+            )
+
 # ----------------------------------------------------------------- report ----
 for n in notes:
     print("  .", n)

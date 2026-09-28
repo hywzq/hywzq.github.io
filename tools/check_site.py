@@ -367,6 +367,17 @@ if pub:
                 % (page, name, plain(listed["note"]))
             )
 
+# 9. document outline ---------------------------------------------------------
+# Every page needs exactly one <h1>. research.html once had none at all and used
+# a large bold paragraph as a stand-in title - which is how a body paragraph
+# ended up rendering larger than every section heading on the page.
+for name, html in pages.items():
+    h1s = re.findall(r"<h1[^>]*>(.*?)</h1>", html, re.S)
+    if len(h1s) != 1:
+        fail("%s: expected exactly one <h1>, found %d" % (name, len(h1s)))
+    elif not plain(h1s[0]).strip():
+        fail("%s: <h1> is empty" % name)
+
 # ----------------------------------------------------------------- report ----
 for n in notes:
     print("  .", n)

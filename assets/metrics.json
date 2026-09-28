@@ -1,8 +1,8 @@
 {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-09-28T18:15:14+02:00",
-  "updatedDisplay": "28 September 2026",
+  "updated": "2026-09-29T00:15:18+02:00",
+  "updatedDisplay": "29 September 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
     "citations": 1361,
@@ -12,7 +12,7 @@
     "i10Index": 23,
     "i10IndexSince": 23
   },
-  "works": 44,
+  "works": 45,
   "papers": [
     {
       "title": "Assessing the effects of climate variation and human activities on grassland degradation and restoration across the globe",
@@ -200,6 +200,11 @@
       "year": 2026
     },
     {
+      "title": "Assessment of the Impact of Different Prior Dataset Selection on Paleoclimate Data Assimilation Performance",
+      "citations": 0,
+      "year": 2026
+    },
+    {
       "title": "Dynamic and thermodynamic mechanisms of Miocene South Asian summer monsoon rainfall enhancement driven by African topography evolution",
       "citations": 0,
       "year": 2026
@@ -243,6 +248,7 @@
     "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 104,
     "Changes+in+the+north+boundary+of+the+East+Asian+summer+monsoon+in+interglacials+of+last+800+ka": 10,
     "Dynamic+and+thermodynamic+mechanisms+of+Miocene+South+Asian+summer+monsoon+rainfall+enhancement+driven+by+African+topography+evolution": 0,
+    "Assessment+of+the+impact+of+different+prior+dataset+selection+on+paleoclimate+data+assimilation+performance": 0,
     "Influence+of+the+East+African+uplift+on+middle+Miocene+faunal+transitions": 4,
     "Miocene+African+topography+induces+decoupling+of+Somali+Jet+and+South+Asian+summer+monsoon+rainfall": 8,
     "Modelling+the+late+Pliocene+climate+with+AWI-CM3+according+to+PlioMIP3+boundary+conditions": 1,
@@ -276,7 +282,7 @@
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin+Role+of+climate+and+vegetation": 5
   },
   "citationMatches": {
-    "matched": 38,
-    "queries": 49
+    "matched": 39,
+    "queries": 50
   }
 }

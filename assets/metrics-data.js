@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-02T12:15:12+02:00",
+  "updated": "2026-10-02T18:15:13+02:00",
   "updatedDisplay": "02 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1361,
-    "citationsSince": 1316,
+    "citations": 1364,
+    "citationsSince": 1319,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -23,7 +23,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "A data-model comparison pinpoints Holocene spatiotemporal pattern of East Asian summer monsoon",
-      "citations": 180,
+      "citations": 181,
       "year": 2021
     },
     {
@@ -68,7 +68,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Northward migration of the East Asian summer monsoon northern boundary during the twenty-first century",
-      "citations": 38,
+      "citations": 39,
       "year": 2022
     },
     {
@@ -182,6 +182,11 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2025
     },
     {
+      "title": "Declining Sensitivity and Increasing Resistance Time of Ecosystem Water Use Efficiency to Meteorological Drought",
+      "citations": 1,
+      "year": 2026
+    },
+    {
       "title": "Mechanistic Drivers and Sustainability Implications of Ecosystem Service Interactions in the Yinshan Mountain Region",
       "citations": 1,
       "year": 2026
@@ -190,11 +195,6 @@ window.__SCHOLAR_METRICS__ = {
       "title": "Modelling the Late Pliocene with AWI-CM3 as a contribution to PlioMIP3 core experiments",
       "citations": 1,
       "year": 2025
-    },
-    {
-      "title": "Declining Sensitivity and Increasing Resistance Time of Ecosystem Water Use Efficiency to Meteorological Drought",
-      "citations": 0,
-      "year": 2026
     },
     {
       "title": "Intensifying negative asymmetry in gross primary productivity response to precipitation anomalies across the Northern Hemisphere: evidence and drivers",
@@ -246,7 +246,7 @@ window.__SCHOLAR_METRICS__ = {
     "Differential+vegetation+feedback+on+the+global+land+monsoon+system+during+the+Mid-Holocene+and+Last+Interglacial": 4,
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
-    "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 38,
+    "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 39,
     "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 104,
     "Changes+in+the+north+boundary+of+the+East+Asian+summer+monsoon+in+interglacials+of+last+800+ka": 10,
     "Dynamic+and+thermodynamic+mechanisms+of+Miocene+South+Asian+summer+monsoon+rainfall+enhancement+driven+by+African+topography+evolution": 0,
@@ -262,7 +262,7 @@ window.__SCHOLAR_METRICS__ = {
     "Fewer+basins+will+follow+their+Budyko+curves+under+global+warming+and+fossil-fueled+development": 47,
     "Influence+of+May%E2%80%93June+frontal+precipitation+on+coherent+moisture+pattern+in+east-central+China+since+1793+based+on+tree-ring+data": 4,
     "Linking+moisture+and+near-surface+wind+with+winter+temperature+to+reveal+the+Holocene+climate+evolution+in+arid+Xinjiang+region+of+China": 21,
-    "A+data-model+comparison+pinpoints+Holocene+spatiotemporal+pattern+of+East+Asian+summer+monsoon": 180,
+    "A+data-model+comparison+pinpoints+Holocene+spatiotemporal+pattern+of+East+Asian+summer+monsoon": 181,
     "Holocene+moisture+evolution+and+its+response+to+atmospheric+circulation+recorded+by+aeolian+deposits+in+the+southern+Tibetan+Plateau": 42,
     "Moisture+variation+inferred+from+tree+rings+in+north+central+China+and+its+links+with+the+remote+oceans": 10,
     "Vegetation+history+and+precipitation+changes+in+the+NE+Qinghai-Tibet+Plateau%3A+a+7%2C900-yr+pollen+record+from+Caodalian+Lake": 44,

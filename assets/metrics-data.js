@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-06T00:15:20+02:00",
+  "updated": "2026-10-06T06:15:18+02:00",
   "updatedDisplay": "06 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1364,
-    "citationsSince": 1319,
+    "citations": 1365,
+    "citationsSince": 1320,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -33,7 +33,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Assessing the impacts of drought on net primary productivity of global land biomes in different climate zones",
-      "citations": 104,
+      "citations": 105,
       "year": 2021
     },
     {
@@ -247,7 +247,7 @@ window.__SCHOLAR_METRICS__ = {
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
     "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 39,
-    "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 104,
+    "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 105,
     "Changes+in+the+north+boundary+of+the+East+Asian+summer+monsoon+in+interglacials+of+last+800+ka": 10,
     "Dynamic+and+thermodynamic+mechanisms+of+Miocene+South+Asian+summer+monsoon+rainfall+enhancement+driven+by+African+topography+evolution": 0,
     "Assessment+of+the+impact+of+different+prior+dataset+selection+on+paleoclimate+data+assimilation+performance": 0,

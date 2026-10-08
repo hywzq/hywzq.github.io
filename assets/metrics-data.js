@@ -3,7 +3,7 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-08T12:15:15+02:00",
+  "updated": "2026-10-08T18:15:16+02:00",
   "updatedDisplay": "08 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
@@ -14,7 +14,7 @@ window.__SCHOLAR_METRICS__ = {
     "i10Index": 23,
     "i10IndexSince": 23
   },
-  "works": 45,
+  "works": 46,
   "papers": [
     {
       "title": "Assessing the effects of climate variation and human activities on grassland degradation and restoration across the globe",
@@ -208,6 +208,11 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Dynamic and thermodynamic mechanisms of Miocene South Asian summer monsoon rainfall enhancement driven by African topography evolution",
+      "citations": 0,
+      "year": 2026
+    },
+    {
+      "title": "Interactive versus inventory-based BVOC emissions reshape regional cloud-radiative and ozone feedbacks in EC-Earth3-AerChem-BVOC",
       "citations": 0,
       "year": 2026
     },

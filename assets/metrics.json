@@ -1,12 +1,12 @@
 {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-09T12:15:12+02:00",
+  "updated": "2026-10-09T18:15:17+02:00",
   "updatedDisplay": "09 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1365,
-    "citationsSince": 1320,
+    "citations": 1368,
+    "citationsSince": 1323,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -31,7 +31,7 @@
     },
     {
       "title": "Assessing the impacts of drought on net primary productivity of global land biomes in different climate zones",
-      "citations": 105,
+      "citations": 106,
       "year": 2021
     },
     {
@@ -50,14 +50,14 @@
       "year": 2022
     },
     {
+      "title": "Vegetation history and precipitation changes in the NE Qinghai‐Tibet Plateau: A 7,900‐years pollen record from Caodalian Lake",
+      "citations": 45,
+      "year": 2021
+    },
+    {
       "title": "Seasonal to decadal variations of precipitation oxygen isotopes in northern China linked to the moisture source",
       "citations": 44,
       "year": 2024
-    },
-    {
-      "title": "Vegetation history and precipitation changes in the NE Qinghai‐Tibet Plateau: A 7,900‐years pollen record from Caodalian Lake",
-      "citations": 44,
-      "year": 2021
     },
     {
       "title": "Holocene moisture evolution and its response to atmospheric circulation recorded by aeolian deposits in the southern Tibetan Plateau",
@@ -155,6 +155,11 @@
       "year": 2025
     },
     {
+      "title": "Quantifying the changes in soil moisture caused by vegetation greening and climate change across different drought gradient in China",
+      "citations": 4,
+      "year": 2026
+    },
+    {
       "title": "Differential vegetation feedback on the global land monsoon system during the mid-Holocene and Last Interglacial",
       "citations": 4,
       "year": 2026
@@ -168,11 +173,6 @@
       "title": "Influence of May–June frontal precipitation on coherent moisture pattern in east-central China since 1793 based on tree-ring data",
       "citations": 4,
       "year": 2022
-    },
-    {
-      "title": "Quantifying the changes in soil moisture caused by vegetation greening and climate change across different drought gradient in China",
-      "citations": 3,
-      "year": 2026
     },
     {
       "title": "Quantifying the impact of vegetation greening on evapotranspiration and its components on the Tibetan Plateau",
@@ -250,7 +250,7 @@
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
     "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 39,
-    "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 105,
+    "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 106,
     "Changes+in+the+north+boundary+of+the+East+Asian+summer+monsoon+in+interglacials+of+last+800+ka": 10,
     "Dynamic+and+thermodynamic+mechanisms+of+Miocene+South+Asian+summer+monsoon+rainfall+enhancement+driven+by+African+topography+evolution": 0,
     "Assessment+of+the+impact+of+different+prior+dataset+selection+on+paleoclimate+data+assimilation+performance": 0,
@@ -268,12 +268,12 @@
     "A+data-model+comparison+pinpoints+Holocene+spatiotemporal+pattern+of+East+Asian+summer+monsoon": 181,
     "Holocene+moisture+evolution+and+its+response+to+atmospheric+circulation+recorded+by+aeolian+deposits+in+the+southern+Tibetan+Plateau": 42,
     "Moisture+variation+inferred+from+tree+rings+in+north+central+China+and+its+links+with+the+remote+oceans": 10,
-    "Vegetation+history+and+precipitation+changes+in+the+NE+Qinghai-Tibet+Plateau%3A+a+7%2C900-yr+pollen+record+from+Caodalian+Lake": 44,
+    "Vegetation+history+and+precipitation+changes+in+the+NE+Qinghai-Tibet+Plateau%3A+a+7%2C900-yr+pollen+record+from+Caodalian+Lake": 45,
     "Increased+growth+of+Qinghai+spruce+in+northwestern+China+during+the+recent+warming+hiatus+period": 87,
     "Intensifying+negative+asymmetry+in+gross+primary+productivity+response+to+precipitation+anomalies+across+the+northern+hemisphere%3A+evidence+and+drivers": 0,
     "Climate+change+impacts+on+runoff+and+water+conservation+modulated+by+slope+and+artificial+forest+withdrawal+in+tropics": 0,
     "Mechanistic+drivers+and+sustainability+implications+of+ecosystem+service+interactions+in+the+Yinshan+Mountain+Region": 1,
-    "Quantifying+the+changes+in+soil+moisture+caused+by+vegetation+greening+and+climate+change+across+different+drought+gradient+in+China": 3,
+    "Quantifying+the+changes+in+soil+moisture+caused+by+vegetation+greening+and+climate+change+across+different+drought+gradient+in+China": 4,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin%3A+Role+of+climate+and+vegetation": 5,
     "Quantifying+the+impact+of+vegetation+greening+on+evapotranspiration+and+its+components+on+the+Tibetan+Plateau": 3,
     "Quantifying+the+spatiotemporal+changes+in+evapotranspiration+and+its+components+driven+by+vegetation+greening+and+climate+change+in+the+northern+foot+of+Yinshan+Mountain": 15,

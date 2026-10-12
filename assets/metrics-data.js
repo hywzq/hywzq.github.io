@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-12T00:15:15+02:00",
+  "updated": "2026-10-12T06:15:13+02:00",
   "updatedDisplay": "12 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1368,
-    "citationsSince": 1323,
+    "citations": 1372,
+    "citationsSince": 1328,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -33,12 +33,12 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Assessing the impacts of drought on net primary productivity of global land biomes in different climate zones",
-      "citations": 106,
+      "citations": 107,
       "year": 2021
     },
     {
       "title": "Vegetation response to changes in climate across different climate zones in China",
-      "citations": 91,
+      "citations": 92,
       "year": 2023
     },
     {
@@ -68,7 +68,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Northward migration of the East Asian summer monsoon northern boundary during the twenty-first century",
-      "citations": 39,
+      "citations": 40,
       "year": 2022
     },
     {
@@ -152,14 +152,14 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2025
     },
     {
+      "title": "Quantifying the changes in soil moisture caused by vegetation greening and climate change across different drought gradient in China",
+      "citations": 5,
+      "year": 2026
+    },
+    {
       "title": "Mechanisms behind evapotranspiration dynamics in the Middle Yellow River Basin: Role of climate and vegetation",
       "citations": 5,
       "year": 2025
-    },
-    {
-      "title": "Quantifying the changes in soil moisture caused by vegetation greening and climate change across different drought gradient in China",
-      "citations": 4,
-      "year": 2026
     },
     {
       "title": "Differential vegetation feedback on the global land monsoon system during the mid-Holocene and Last Interglacial",
@@ -251,8 +251,8 @@ window.__SCHOLAR_METRICS__ = {
     "Differential+vegetation+feedback+on+the+global+land+monsoon+system+during+the+Mid-Holocene+and+Last+Interglacial": 4,
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
-    "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 39,
-    "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 106,
+    "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 40,
+    "Assessing+the+impacts+of+drought+on+net+primary+productivity+of+global+land+biomes+in+different+climate+zones": 107,
     "Changes+in+the+north+boundary+of+the+East+Asian+summer+monsoon+in+interglacials+of+last+800+ka": 10,
     "Dynamic+and+thermodynamic+mechanisms+of+Miocene+South+Asian+summer+monsoon+rainfall+enhancement+driven+by+African+topography+evolution": 0,
     "Assessment+of+the+impact+of+different+prior+dataset+selection+on+paleoclimate+data+assimilation+performance": 0,
@@ -275,13 +275,13 @@ window.__SCHOLAR_METRICS__ = {
     "Intensifying+negative+asymmetry+in+gross+primary+productivity+response+to+precipitation+anomalies+across+the+northern+hemisphere%3A+evidence+and+drivers": 0,
     "Climate+change+impacts+on+runoff+and+water+conservation+modulated+by+slope+and+artificial+forest+withdrawal+in+tropics": 0,
     "Mechanistic+drivers+and+sustainability+implications+of+ecosystem+service+interactions+in+the+Yinshan+Mountain+Region": 1,
-    "Quantifying+the+changes+in+soil+moisture+caused+by+vegetation+greening+and+climate+change+across+different+drought+gradient+in+China": 4,
+    "Quantifying+the+changes+in+soil+moisture+caused+by+vegetation+greening+and+climate+change+across+different+drought+gradient+in+China": 5,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin%3A+Role+of+climate+and+vegetation": 5,
     "Quantifying+the+impact+of+vegetation+greening+on+evapotranspiration+and+its+components+on+the+Tibetan+Plateau": 3,
     "Quantifying+the+spatiotemporal+changes+in+evapotranspiration+and+its+components+driven+by+vegetation+greening+and+climate+change+in+the+northern+foot+of+Yinshan+Mountain": 15,
     "Discriminating+the+impacts+of+vegetation+greening+and+climate+change+on+the+changes+in+evapotranspiration+and+transpiration+fraction+over+the+Yellow+River+Basin": 32,
     "Untangling+the+effects+of+climate+variation+and+human+interference+on+grassland+dynamics+in+North+China": 17,
-    "Vegetation+response+to+changes+in+climate+across+different+climate+zones+in+China": 91,
+    "Vegetation+response+to+changes+in+climate+across+different+climate+zones+in+China": 92,
     "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 28,
     "Untangling+the+effects+of+management+measures%2C+climate+and+land+use+cover+change+on+grassland+dynamics+in+the+Qinghai-Tibet+Plateau%2C+China": 33,
     "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 185,

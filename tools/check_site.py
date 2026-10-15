@@ -378,6 +378,97 @@ for name, html in pages.items():
     elif not plain(h1s[0]).strip():
         fail("%s: <h1> is empty" % name)
 
+# 10. "Papers by Year" ---------------------------------------------------------
+# The year breakdown is hand-written and, unlike the counts in section 6, nothing
+# overwrites it at runtime - so a stale number here is what the reader sees. It
+# also restates two things the list already knows: how many papers each year
+# holds, and how many distinct journals those papers span (the first four are
+# named, the rest are folded into "and N more").
+if pub:
+    per_year = {}
+    for gid in GROUPS:
+        for li in group_items[gid]:
+            text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", li))
+            years = re.findall(r"\b((?:19|20)\d{2})\b", text)
+            em = re.search(r"<em[^>]*>(.*?)</em>", li, re.S)
+            journal = plain(em.group(1)) if em else ""
+            if years:
+                per_year.setdefault(years[-1], {"papers": 0, "journals": set()})
+                per_year[years[-1]]["papers"] += 1
+                per_year[years[-1]]["journals"].add(journal)
+
+    block = re.search(
+        r'<details class="publication-group".*?</details>', pub, re.S
+    )
+    if not block:
+        fail("publications.html: the 'Papers by Year' block is missing")
+    else:
+        seen = set()
+        for li in re.findall(r"<li\b.*?</li>", block.group(0), re.S):
+            ym = re.search(r"<strong[^>]*>((?:19|20)\d{2})</strong>", li)
+            cm = re.search(r"&mdash;\s*([\d,]+)\s*papers?", li)
+            if not (ym and cm):
+                fail("publications.html: unparseable 'Papers by Year' entry")
+                continue
+            year, shown = ym.group(1), int(cm.group(1).replace(",", ""))
+            seen.add(year)
+            actual = per_year.get(year)
+            if not actual:
+                fail("publications.html: 'Papers by Year' lists %s but the list "
+                     "has no %s papers" % (year, year))
+                continue
+            if shown != actual["papers"]:
+                fail("publications.html: 'Papers by Year' says %s has %d papers "
+                     "but the list has %d" % (year, shown, actual["papers"]))
+            named = re.findall(r"<em[^>]*>(.*?)</em>", li, re.S)
+            more = re.search(r"and\s+([\d,]+)\s+more", li)
+            total_journals = len(named) + (
+                int(more.group(1).replace(",", "")) if more else 0
+            )
+            if total_journals != len(actual["journals"]):
+                fail("publications.html: 'Papers by Year' accounts for %d "
+                     "journals in %s but the list has %d"
+                     % (total_journals, year, len(actual["journals"])))
+        missing = sorted(set(per_year) - seen, reverse=True)
+        if missing:
+            fail("publications.html: 'Papers by Year' omits %s"
+                 % ", ".join(missing))
+
+# 11. bolded author on entries with more than one "Wang Z." -------------------
+# The site marks the author in <strong>. Where a paper lists more than one
+# "Wang Z." that marker cannot be inferred from the text, and it has been on
+# the wrong author before. The expected 1-based position is recorded here,
+# taken from the publisher record (OpenAlex, full names) and confirmed with
+# the author. Adding a paper with a second "Wang Z." needs a line here.
+WANG_BOLD = {
+    "fbjMuifd6SFcj31TVAFBlv": 6,   # Hydrol. Earth Syst. Sci. 2026
+    "AwM1NrXehPUN20eM8L53er": 8,   # J. Hydrol. 2026
+    "Y4z7nAAfAkBw5VVFs954NS": 9,   # Land Degrad. Dev. 2026
+    "dm0omClvOEdn7YfRpOSrBu": 9,   # Environ. Impact Assess. Rev. 2026
+    "n2xiX4BNRQT86NakgOuDNk": 5,   # J. Environ. Manage. 2025
+    "CGHzWxcCnRFsKFFdycui0E": 8,   # Remote Sens. 2025
+    "mf4VXF3q6vTkWiPJJWFII7": 3,   # Remote Sens. 2024
+    "aETeoAnoDwd13Cdnnrp2qJ": 7,   # Earth's Future, under review
+    "yrkVI42jzmugdNjI7CpCKE": 7,   # Sci. Total Environ. 2023
+}
+if pub:
+    for li in re.findall(r"<li\b.*?</li>", pub, re.S):
+        node = re.search(r'data-page-node-id="([^"]+)"', li)
+        if not node:
+            continue
+        cut = li.find("<em")
+        head = li[:cut] if cut > 0 else li
+        if re.sub(r"<[^>]+>", "", head).count("Wang Z.") < 2:
+            continue
+        idx = li[:li.find("<strong")].count(",") + 1
+        want = WANG_BOLD.get(node.group(1))
+        if want is None:
+            notes.append("bolded author unverified on %s (has >1 'Wang Z.', "
+                         "bold at #%d) - add it to WANG_BOLD" % (node.group(1), idx))
+        elif idx != want:
+            fail("publications.html: %s bolds author #%d but the recorded "
+                 "position for 'Wang Z.' is #%d" % (node.group(1), idx, want))
+
 # ----------------------------------------------------------------- report ----
 for n in notes:
     print("  .", n)

@@ -9,8 +9,12 @@ Verifies, across every .html page:
   3. CSS braces are balanced and no selector list has a stray comma
   4. no leftover placeholder text
   5. no descendant selectors like ".x span" that would pill-wrap bilingual spans
-  6. the metrics pipeline files exist and agree with each other
-  7. every "find this paper" link is accounted for by the citation map
+  6. every derived number is anchored and in step with the content
+  7. no count is typed straight into a sentence, bypassing the anchors
+  8. every paper card / study summary matches the publication list
+  9. each page has exactly one <h1>
+ 10. the "Papers by Year" block adds up
+ 11. each multi-"Wang Z." entry bolds the right author
 
 Run:  python3 tools/check_site.py
 Exit code 0 = clean, 1 = problems found.
@@ -190,89 +194,81 @@ else:
                 % (key, m.group(1), payload["scholar"][key])
             )
 
-# 6. publication counts -------------------------------------------------------
-# The numbers in the hero sentence and the metric cards are counted from the list
-# itself by assets/counts.js, so a stale value is cosmetic rather than fatal - but
-# it is what a crawler or a no-JS reader sees, so report any drift.
+# 6. derived numbers ----------------------------------------------------------
+# Every count on the site is anchored in the HTML with data-fact="<key>", and
+# every value comes from one place: tools/site_facts.py counts it from the
+# content, tools/build_counts.py writes it into the anchor (the no-JS fallback)
+# and into assets/counts-data.js (which assets/counts.js applies at runtime).
+# Nothing is hand-maintained, so there is nothing to verify by hand here - we
+# just ask the builder whether the pages are in step. That covers the hero
+# numbers, the metric tiles, the Model Data tile and "Papers by Year" at once.
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import build_counts  # noqa: E402
+import site_facts as sf  # noqa: E402
+
+# still needed by the card / by-year / author checks further down
 pub = pages.get("publications.html")
-if pub:
-    GROUPS = [
-        "first-and-corresponding-author",
-        "under-review-and-submitted",
-        "climate-dynamics-earth-system-modelling-and-paleoclimate",
-        "ecology",
-    ]
-    IN_PROGRESS_RE = re.compile(r"under review|submitted|in revising", re.I)
-    group_items = {}
-    for gid in GROUPS:
-        # the group's heading, then everything up to the next heading / details block
-        m = re.search(
-            r'<h2 id="%s".*?</h2>(.*?)(?=<h2 id=|<details|</section>|\Z)' % re.escape(gid),
-            pub,
-            re.S,
-        )
-        group_items[gid] = re.findall(r"<li\b.*?</li>", m.group(1) if m else "", re.S)
+GROUPS = sf.GROUPS
+group_items = sf.group_items(pub) if pub else {}
 
-    total = sum(len(v) for v in group_items.values())
-    in_progress = 0
-    for items in group_items.values():
-        for it in items:
-            note = re.search(r'<span class="pub-note"[^>]*>(.*?)</span>', it, re.S)
-            if note and IN_PROGRESS_RE.search(note.group(1)):
-                in_progress += 1
+facts, _by_year, built, build_problems = build_counts.build(ROOT)
 
-    expected = {
-        "first-author": len(group_items[GROUPS[0]]),
-        "total": total,
-        "in-progress": in_progress,
-    }
-    notes.append(
-        "publication counts: %d first/corresponding, %d total, %d in progress"
-        % (expected["first-author"], total, in_progress)
-    )
-    for key, actual in expected.items():
-        for shown in sorted(set(re.findall(r'data-pub-count="%s"[^>]*>([\d,]+)<' % key, pub))):
-            if shown.replace(",", "") != str(actual):
-                notes.append(
-                    "fallback for pub-count %s is %s but the list has %d "
-                    "(assets/counts.js overwrites it)" % (key, shown, actual)
-                )
+for name in sorted(built):
+    if built[name] != pages.get(name):
+        fail("%s: a [data-fact] anchor is out of step with the content "
+             "(run: python3 tools/build_counts.py)" % name)
+for msg in build_problems:
+    fail("counts: %s" % msg)
 
-# 7. publication-count claims on the other pages ------------------------------
-# publications.html derives its numbers from the list itself (assets/counts.js).
-# The other pages cannot - there is no list on them - so their numbers are
-# hand-written and drift silently. This is NOT a cosmetic fallback like section
-# 6: nothing overwrites these at runtime, so a stale value is what the reader
-# actually sees. Treat drift as a failure.
-if pub:
-    claims = [
-        (
-            re.compile(r"([\d,]{1,4})\s*(?:journal papers|篇期刊论文)", re.I),
-            total,
-            "journal papers",
-        ),
-        (
-            re.compile(
-                r"([\d,]{1,4})\s*(?:first- and corresponding-author papers|"
-                r"第一作者与通讯作者论文)",
-                re.I,
-            ),
-            len(group_items[GROUPS[0]]),
-            "first/corresponding-author papers",
-        ),
-    ]
-    for name, html in pages.items():
-        if name == "publications.html":
-            continue
-        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
-        for rx, want, label in claims:
-            for m in rx.finditer(text):
-                shown = m.group(1).replace(",", "")
-                if shown != str(want):
-                    fail(
-                        "%s: says %s %s but the list has %d"
-                        % (name, shown, label, want)
-                    )
+notes.append(
+    "counts: %d journal papers, %d first/corresponding-author, %d in progress, "
+    "%d highly cited, %d CMIP6 datasets, %d research directions"
+    % (facts["journal-papers"], facts["first-author-papers"],
+       facts["in-progress-papers"], facts["highly-cited-papers"],
+       facts["cmip6-datasets"], facts["research-directions"])
+)
+
+# 6b. count-like claims that are NOT anchored ---------------------------------
+# The builder only sees anchored numbers, so a count typed straight into a
+# sentence would sail past it. Strip the anchors, then look for a digit sitting
+# directly in front of a count phrase - that is a number someone forgot to tag,
+# and exactly the "you changed one place and forgot another" failure this check
+# exists to prevent. Each remaining tag is replaced by NUL rather than a space,
+# so a number in one element ("...23</span>" in the i10 tile) cannot appear to
+# be next to a phrase in the following element. A digit followed by "%" is part
+# of a name ("ESI 1% highly cited paper"), not a count, so it is excluded.
+ANCHOR_STRIP_RE = re.compile(r'<\w+\b[^>]*data-fact="[^"]*"[^>]*>.*?</\w+>', re.S)
+UNANCHORED_CLAIM_RE = re.compile(
+    r"(\d{1,4})(?!\s*%)\s{0,3}(?:journal papers|篇期刊论文|"
+    r"first- and corresponding-author papers|第一作者与通讯作者论文|"
+    r"highly cited paper|高被引论文|"
+    r"CMIP6\s*[\u2013\u2014-]\s*PMIP4|组 CMIP6)",
+    re.I,
+)
+for name, html in pages.items():
+    bare = re.sub(r"<[^>]+>", "\x00", ANCHOR_STRIP_RE.sub(" ", html))
+    for m in UNANCHORED_CLAIM_RE.finditer(bare):
+        fail("%s: %r looks like an unanchored count - wrap the digit in "
+             "data-fact=... so it cannot go stale" % (name, m.group(0).strip()))
+
+# 6c. metric tiles ------------------------------------------------------------
+# The tiles are where a hand-typed number is most tempting: adding one is easy,
+# and nothing about the markup forces it to be wired up. So require every tile's
+# <strong> to carry either data-fact (a number this site counts) or data-metric
+# (a number Scholar supplies). Without one, the tile silently stops updating.
+TILE_RE = re.compile(
+    r'<(?:article|div)\b[^>]*class="[^"]*\b(?:scholar|research|publication)-metric\b'
+    r'[^"]*"[^>]*>(.*?)</(?:article|div)>',
+    re.S,
+)
+STRONG_NUM_RE = re.compile(r"<strong\b([^>]*)>([\d,]+)</strong>")
+for name, html in pages.items():
+    for tile in TILE_RE.findall(html):
+        for attrs, shown in STRONG_NUM_RE.findall(tile):
+            if "data-fact=" in attrs or "data-metric=" in attrs:
+                continue
+            fail("%s: a metric tile shows %s with neither data-fact nor "
+                 "data-metric - it will go stale" % (name, shown))
 
 # 8. paper cards / study summaries vs the publication list --------------------
 # research-highlights.html (study summaries) and research.html (the paper cards
@@ -379,11 +375,12 @@ for name, html in pages.items():
         fail("%s: <h1> is empty" % name)
 
 # 10. "Papers by Year" ---------------------------------------------------------
-# The year breakdown is hand-written and, unlike the counts in section 6, nothing
-# overwrites it at runtime - so a stale number here is what the reader sees. It
-# also restates two things the list already knows: how many papers each year
-# holds, and how many distinct journals those papers span (the first four are
-# named, the rest are folded into "and N more").
+# The year breakdown restates two things the list already knows: how many papers
+# each year holds, and how many distinct journals those papers span (the first
+# four are named, the rest are folded into "and N more"). The numbers themselves
+# come from the anchors like everything else, so this is really a check that the
+# block's *shape* still matches the list - a year with more journals than it
+# names needs an "and N more".
 if pub:
     per_year = {}
     for gid in GROUPS:
@@ -406,7 +403,11 @@ if pub:
         seen = set()
         for li in re.findall(r"<li\b.*?</li>", block.group(0), re.S):
             ym = re.search(r"<strong[^>]*>((?:19|20)\d{2})</strong>", li)
-            cm = re.search(r"&mdash;\s*([\d,]+)\s*papers?", li)
+            # the counts are wrapped in data-fact anchors now, so allow for the
+            # opening and closing tag around the number
+            cm = re.search(
+                r"&mdash;\s*(?:<[^>]+>\s*)?([\d,]+)(?:\s*</[^>]+>)?\s*papers?", li
+            )
             if not (ym and cm):
                 fail("publications.html: unparseable 'Papers by Year' entry")
                 continue
@@ -421,7 +422,9 @@ if pub:
                 fail("publications.html: 'Papers by Year' says %s has %d papers "
                      "but the list has %d" % (year, shown, actual["papers"]))
             named = re.findall(r"<em[^>]*>(.*?)</em>", li, re.S)
-            more = re.search(r"and\s+([\d,]+)\s+more", li)
+            more = re.search(
+                r"and\s+(?:<[^>]+>\s*)?([\d,]+)(?:\s*</[^>]+>)?\s+more", li
+            )
             total_journals = len(named) + (
                 int(more.group(1).replace(",", "")) if more else 0
             )
@@ -445,6 +448,7 @@ WANG_BOLD = {
     "AwM1NrXehPUN20eM8L53er": 8,   # J. Hydrol. 2026
     "Y4z7nAAfAkBw5VVFs954NS": 9,   # Land Degrad. Dev. 2026
     "dm0omClvOEdn7YfRpOSrBu": 9,   # Environ. Impact Assess. Rev. 2026
+    "j3mztZcumk8MnegbkbwXIA": 8,   # J. Environ. Manage. 2026
     "n2xiX4BNRQT86NakgOuDNk": 5,   # J. Environ. Manage. 2025
     "CGHzWxcCnRFsKFFdycui0E": 8,   # Remote Sens. 2025
     "mf4VXF3q6vTkWiPJJWFII7": 3,   # Remote Sens. 2024

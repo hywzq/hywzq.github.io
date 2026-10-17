@@ -1,7 +1,7 @@
 {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-17T12:15:12+02:00",
+  "updated": "2026-10-17T17:02:36+02:00",
   "updatedDisplay": "17 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
@@ -12,7 +12,7 @@
     "i10Index": 23,
     "i10IndexSince": 23
   },
-  "works": 46,
+  "works": 47,
   "papers": [
     {
       "title": "Assessing the effects of climate variation and human activities on grassland degradation and restoration across the globe",
@@ -195,6 +195,11 @@
       "year": 2025
     },
     {
+      "title": "Attributing the changes in evapotranspiration and its components to climatic factors and vegetation dynamics in the Three-River Headwaters Region",
+      "citations": 0,
+      "year": 2026
+    },
+    {
       "title": "Intensifying negative asymmetry in gross primary productivity response to precipitation anomalies across the Northern Hemisphere: evidence and drivers",
       "citations": 0,
       "year": 2026
@@ -254,9 +259,9 @@
     "Changes+in+the+north+boundary+of+the+East+Asian+summer+monsoon+in+interglacials+of+last+800+ka": 10,
     "Dynamic+and+thermodynamic+mechanisms+of+Miocene+South+Asian+summer+monsoon+rainfall+enhancement+driven+by+African+topography+evolution": 0,
     "Assessment+of+the+impact+of+different+prior+dataset+selection+on+paleoclimate+data+assimilation+performance": 0,
-    "Influence+of+the+East+African+uplift+on+middle+Miocene+faunal+transitions": 4,
+    "East+African+uplift+as+a+catalyst+for+Middle+Miocene+faunal+transitions": 4,
     "Miocene+African+topography+induces+decoupling+of+Somali+Jet+and+South+Asian+summer+monsoon+rainfall": 8,
-    "Modelling+the+late+Pliocene+climate+with+AWI-CM3+according+to+PlioMIP3+boundary+conditions": 1,
+    "Modeling+the+Late+Pliocene+with+AWI-CM3+as+a+contribution+to+PlioMIP3+core+experiments": 1,
     "Qiangtang+Plateau+high+pressure+system+and+Indian+summer+monsoon+co-regulated+natural+dust+storm+activity+on+the+southern+Tibetan+Plateau+during+the+Holocene": 6,
     "Seasonal+to+decadal+variations+of+precipitation+oxygen+isotopes+in+northern+China+linked+to+the+moisture+source": 44,
     "Holocene+forcing+of+aeolian+dust+activity+over+the+Tibetan+Plateau+and+its+surroundings": 35,
@@ -268,12 +273,15 @@
     "A+data-model+comparison+pinpoints+Holocene+spatiotemporal+pattern+of+East+Asian+summer+monsoon": 182,
     "Holocene+moisture+evolution+and+its+response+to+atmospheric+circulation+recorded+by+aeolian+deposits+in+the+southern+Tibetan+Plateau": 42,
     "Moisture+variation+inferred+from+tree+rings+in+north+central+China+and+its+links+with+the+remote+oceans": 10,
+    "Variability+of+mean+temperature+since+1808+A.D.+in+Shennongjia+Mountain+area+inferred+from+tree+ring": 13,
     "Vegetation+history+and+precipitation+changes+in+the+NE+Qinghai-Tibet+Plateau%3A+a+7%2C900-yr+pollen+record+from+Caodalian+Lake": 45,
     "Increased+growth+of+Qinghai+spruce+in+northwestern+China+during+the+recent+warming+hiatus+period": 88,
+    "Declining+Sensitivity+and+Increasing+Resistance+Time+of+Ecosystem+Water+Use+Efficiency+to+Meteorological+Drought": 1,
     "Intensifying+negative+asymmetry+in+gross+primary+productivity+response+to+precipitation+anomalies+across+the+northern+hemisphere%3A+evidence+and+drivers": 0,
     "Climate+change+impacts+on+runoff+and+water+conservation+modulated+by+slope+and+artificial+forest+withdrawal+in+tropics": 0,
     "Mechanistic+drivers+and+sustainability+implications+of+ecosystem+service+interactions+in+the+Yinshan+Mountain+Region": 1,
     "Quantifying+the+changes+in+soil+moisture+caused+by+vegetation+greening+and+climate+change+across+different+drought+gradient+in+China": 5,
+    "Attributing+the+changes+in+evapotranspiration+and+its+components+to+climatic+factors+and+vegetation+dynamics+in+the+Three-River+Headwaters+Region": 0,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin%3A+Role+of+climate+and+vegetation": 6,
     "Quantifying+the+impact+of+vegetation+greening+on+evapotranspiration+and+its+components+on+the+Tibetan+Plateau": 3,
     "Quantifying+the+spatiotemporal+changes+in+evapotranspiration+and+its+components+driven+by+vegetation+greening+and+climate+change+in+the+northern+foot+of+Yinshan+Mountain": 15,
@@ -282,12 +290,13 @@
     "Vegetation+response+to+changes+in+climate+across+different+climate+zones+in+China": 93,
     "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 28,
     "Untangling+the+effects+of+management+measures%2C+climate+and+land+use+cover+change+on+grassland+dynamics+in+the+Qinghai-Tibet+Plateau%2C+China": 33,
+    "Spatiotemporal+dynamics+of+China%E2%80%99s+grassland+NPP+and+its+driving+factors": 35,
     "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 185,
     "Grassland+dynamics+in+responses+to+climate+variation+and+human+activities+in+China+from+2000+to+2013": 179,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin+Role+of+climate+and+vegetation": 6
   },
   "citationMatches": {
-    "matched": 39,
-    "queries": 50
+    "matched": 43,
+    "queries": 53
   }
 }

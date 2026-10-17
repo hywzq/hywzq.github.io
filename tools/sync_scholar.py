@@ -126,7 +126,9 @@ def main():
             continue
         match, score = best(kw, sch)
         if score >= rm.FUZZY_MIN:
-            if rm.norm_title(s["title"]) != rm.norm_title(match["title"]):
+            # A 1.00 score means the keyword sets are identical, so any
+            # difference is punctuation ("A.D." vs "AD") - not worth a look.
+            if score < 0.999 and rm.norm_title(s["title"]) != rm.norm_title(match["title"]):
                 retitled.append((s, match, score))
             continue
         if s["note"]:

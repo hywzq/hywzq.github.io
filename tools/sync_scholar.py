@@ -49,6 +49,21 @@ PUBLICATIONS = os.path.join(ROOT, "publications.html")
 # similar to be a coincidence - that is what a retitled paper looks like.
 RENAME_MIN = 0.45
 
+# Conference abstracts live on the Scholar profile and have no journal, so they
+# would otherwise come back as "new paper" on every run. They are not journal
+# papers and do not belong in the publication list. Keyed by the normalised
+# title, so a slight rewording in Scholar will surface it again - which is the
+# behaviour we want if one of them is ever published properly.
+IGNORE = {
+    "interactive versus inventory based bvoc emissions reshape regional cloud "
+    "radiative and ozone feedbacks in ec earth3 aerchem bvoc",
+    "monsoon trend and multi scale variability changes over the last 6000 years",
+    "beyond constitutive plant bvocs modelling emissions from litter permafrost "
+    "soil forest management and stress disturbance",
+    "natural variability has dominated the movement of high asia polar jet over "
+    "the past six centuries",
+}
+
 # The author list is "Surname I., Surname I. M., ..." and runs straight into the
 # title, so the title starts after the last set of initials.
 AUTHOR_TAIL = re.compile(r"[A-Z][A-Za-z\u2019'\-]+(?: [A-Z]\.)+")
@@ -104,7 +119,7 @@ def main():
     sch = [(p, rm.keywords(rm.norm_title(p["title"]))) for p in scholar]
     sit = [(s, rm.keywords(rm.norm_title(s["title"]))) for s in site]
 
-    renamed, new, unindexed, retitled = [], [], [], []
+    renamed, new, unindexed, retitled, ignored = [], [], [], [], []
 
     for s, kw in sit:
         if not kw:
@@ -123,7 +138,11 @@ def main():
 
     for p, kw in sch:
         match, score = best(kw, sit)
-        if score < RENAME_MIN:
+        if score >= RENAME_MIN:
+            continue
+        if rm.norm_title(p["title"]) in IGNORE:
+            ignored.append(p)
+        else:
             new.append((p, match, score))
 
     print("%d works on Scholar, %d entries on the site" % (len(sch), len(sit)))
@@ -151,6 +170,12 @@ def main():
         for p, s, score in new:
             print("  %.2f  %s (%s, %s citations)"
                   % (score, p["title"][:88], p.get("year", "?"), p.get("citations", 0)))
+        print()
+
+    if ignored:
+        print("IGNORED - conference abstracts, not journal papers")
+        for p in ignored:
+            print("        %s (%s)" % (p["title"][:88], p.get("year", "?")))
         print()
 
     if unindexed:

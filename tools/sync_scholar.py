@@ -10,6 +10,7 @@ title, and prints the differences. It never edits anything.
 
     python3 tools/sync_scholar.py           # report
     python3 tools/sync_scholar.py --strict  # exit 1 if something needs a look
+    python3 tools/sync_scholar.py --watch   # one line for the log, notify on change
 
 Four things can come out of the comparison:
 
@@ -29,11 +30,14 @@ Four things can come out of the comparison:
 Why not generate the list from Scholar instead? See SCHOLAR.md.
 """
 
+import hashlib
 import io
 import json
 import os
 import re
+import subprocess
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -44,6 +48,10 @@ import site_facts as sf               # noqa: E402
 
 METRICS = os.path.join(ROOT, "assets", "metrics.json")
 PUBLICATIONS = os.path.join(ROOT, "publications.html")
+
+# What the last unattended run already announced. Kept out of the repo: it is
+# about this machine's notification history, not about the site.
+STATE = os.path.join(HERE, ".scholar-state.json")
 
 # A title pair scoring in this band is too different to be a match and too
 # similar to be a coincidence - that is what a retitled paper looks like.
@@ -107,10 +115,10 @@ def best(kw, pool):
     return top, score
 
 
-def main():
+def compare():
+    """Match the site list against the Scholar profile. Reads, never writes."""
     if not os.path.exists(METRICS):
-        print("no %s - run tools/refresh_metrics.py first" % os.path.relpath(METRICS, ROOT))
-        return 2
+        return None
 
     payload = json.load(io.open(METRICS, encoding="utf-8"))
     scholar = payload.get("papers", [])
@@ -146,6 +154,80 @@ def main():
             ignored.append(p)
         else:
             new.append((p, match, score))
+
+    return {
+        "scholar": sch, "site": sit,
+        "renamed": renamed, "retitled": retitled,
+        "new": new, "unindexed": unindexed, "ignored": ignored,
+    }
+
+
+def watch(res):
+    """Announce a *change* in what needs a look, not the standing backlog.
+
+    The 6-hourly job runs this every time it scrapes. Without the signature the
+    same two unfixed entries would raise a notification four times a day, and a
+    notification that fires when nothing changed is one you stop reading.
+    """
+    pending = (["RENAMED  " + s["title"][:80] for s, _, _ in res["renamed"]]
+               + ["NEW      " + p["title"][:80] for p, _, _ in res["new"]])
+    signature = hashlib.sha1("\n".join(sorted(pending)).encode("utf-8")).hexdigest()
+
+    previous = {}
+    if os.path.exists(STATE):
+        try:
+            previous = json.load(io.open(STATE, encoding="utf-8"))
+        except Exception:
+            previous = {}
+
+    if not pending:
+        if previous.get("pending"):
+            print("WATCH nothing pending any more")
+        with io.open(STATE, "w", encoding="utf-8") as fh:
+            fh.write(json.dumps({"signature": "", "pending": 0}, indent=2))
+        return 0
+
+    print("WATCH %d item(s) need a look" % len(pending))
+    for line in pending:
+        print("  " + line)
+
+    if signature == previous.get("signature"):
+        print("WATCH unchanged since the last run; not notifying again")
+        return 1
+
+    body = "%d 条论文变化待处理：%s" % (len(pending), pending[0].split("  ", 1)[1][:60])
+    try:
+        subprocess.run(
+            ["osascript", "-e",
+             'display notification "%s" with title "个人主页" subtitle "谷歌学术对账"'
+             % body.replace("\\", "\\\\").replace('"', '\\"')],
+            timeout=10, check=False,
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print("WATCH notification sent")
+    except Exception as exc:                       # noqa: BLE001 - never fatal
+        print("WATCH could not send a notification: %s" % exc)
+
+    with io.open(STATE, "w", encoding="utf-8") as fh:
+        fh.write(json.dumps({"signature": signature, "pending": len(pending),
+                             "at": time.strftime("%Y-%m-%d %H:%M:%S")}, indent=2))
+    return 1
+
+
+def main():
+    res = compare()
+    if res is None:
+        print("no %s - run tools/refresh_metrics.py first" % os.path.relpath(METRICS, ROOT))
+        return 2
+
+    renamed, retitled = res["renamed"], res["retitled"]
+    new, unindexed, ignored = res["new"], res["unindexed"], res["ignored"]
+    sch, sit = res["scholar"], res["site"]
+
+    if "--watch" in sys.argv:
+        # The unattended run: one line into the log, plus a notification when
+        # the set of pending items changes. The full report below is only worth
+        # printing when somebody is actually looking at it.
+        return watch(res)
 
     print("%d works on Scholar, %d entries on the site" % (len(sch), len(sit)))
     print("%d site entries carry a status note and are skipped\n"
@@ -189,6 +271,9 @@ def main():
 
     if not (renamed or retitled or new or unindexed):
         print("the list and the profile agree")
+
+    if "--watch" in sys.argv:
+        return watch(res)
 
     print("Nothing here is applied automatically: grouping, the bolded author and")
     print("the status notes all need a decision. Edit publications.html, then run")

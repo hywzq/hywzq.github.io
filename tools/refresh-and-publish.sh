@@ -10,6 +10,11 @@
 # 6-hourly schedule and at login. Run it by hand any time you want the published
 # numbers updated immediately.
 #
+# After each scrape it also reconciles the publication list against the profile
+# (tools/sync_scholar.py --watch) and raises a notification if anything is
+# pending. That step only reports: the numbers are the only thing this script
+# ever publishes.
+#
 # The cooldown exists because the job also fires at login: without it, opening
 # the laptop five times a day would mean five scrapes. The scheduled runs are 6
 # hours apart, so a 2-hour cooldown never blocks them.
@@ -62,6 +67,15 @@ fi
 if ! "$PYTHON" tools/refresh_metrics.py --quiet; then
   echo "scrape failed - leaving the published numbers as they are."
   exit 1
+fi
+
+# Check the publication list against the fresh profile. This never edits the
+# site: a new paper still needs a group, a bolded author and often a status
+# note, none of which can be decided here. What it does is make the need
+# visible - one line in this log, plus a macOS notification the first time the
+# set of pending items changes, so a paper cannot sit unnoticed for months.
+if ! "$PYTHON" tools/sync_scholar.py --watch; then
+  echo "reconciliation: see the items above; the site has not been touched."
 fi
 
 if git diff --quiet -- "${FILES[@]}"; then

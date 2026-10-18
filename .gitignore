@@ -7,6 +7,11 @@ tools/shots/
 # LaunchAgent log from tools/refresh_metrics.py
 tools/refresh-metrics.log
 
+# per-machine state: the OpenAlex work cache and what the last reconciliation
+# run already announced. Both are rebuildable, neither belongs in the repo.
+tools/.openalex-works.json
+tools/.scholar-state.json
+
 # editor scratch files
 _shoot_tmp.html
 

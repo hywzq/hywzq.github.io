@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-23T18:15:18+02:00",
-  "updatedDisplay": "23 October 2026",
+  "updated": "2026-10-25T12:15:12+01:00",
+  "updatedDisplay": "25 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1382,
-    "citationsSince": 1336,
+    "citations": 1383,
+    "citationsSince": 1337,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -83,7 +83,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Untangling the effects of management measures, climate and land use cover change on grassland dynamics in the Qinghai–Tibet Plateau, China",
-      "citations": 33,
+      "citations": 34,
       "year": 2021
     },
     {
@@ -291,7 +291,7 @@ window.__SCHOLAR_METRICS__ = {
     "Untangling+the+effects+of+climate+variation+and+human+interference+on+grassland+dynamics+in+North+China": 17,
     "Vegetation+response+to+changes+in+climate+across+different+climate+zones+in+China": 93,
     "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 28,
-    "Untangling+the+effects+of+management+measures%2C+climate+and+land+use+cover+change+on+grassland+dynamics+in+the+Qinghai-Tibet+Plateau%2C+China": 33,
+    "Untangling+the+effects+of+management+measures%2C+climate+and+land+use+cover+change+on+grassland+dynamics+in+the+Qinghai-Tibet+Plateau%2C+China": 34,
     "Spatiotemporal+dynamics+of+China%E2%80%99s+grassland+NPP+and+its+driving+factors": 35,
     "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 187,
     "Grassland+dynamics+in+responses+to+climate+variation+and+human+activities+in+China+from+2000+to+2013": 179,

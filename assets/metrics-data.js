@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-27T12:15:20+01:00",
+  "updated": "2026-10-27T18:15:19+01:00",
   "updatedDisplay": "27 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1383,
-    "citationsSince": 1337,
+    "citations": 1384,
+    "citationsSince": 1338,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -88,7 +88,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Discriminating the impacts of vegetation greening and climate change on the changes in evapotranspiration and transpiration fraction over the Yellow River Basin",
-      "citations": 32,
+      "citations": 33,
       "year": 2023
     },
     {
@@ -287,7 +287,7 @@ window.__SCHOLAR_METRICS__ = {
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin%3A+Role+of+climate+and+vegetation": 6,
     "Quantifying+the+impact+of+vegetation+greening+on+evapotranspiration+and+its+components+on+the+Tibetan+Plateau": 3,
     "Quantifying+the+spatiotemporal+changes+in+evapotranspiration+and+its+components+driven+by+vegetation+greening+and+climate+change+in+the+northern+foot+of+Yinshan+Mountain": 15,
-    "Discriminating+the+impacts+of+vegetation+greening+and+climate+change+on+the+changes+in+evapotranspiration+and+transpiration+fraction+over+the+Yellow+River+Basin": 32,
+    "Discriminating+the+impacts+of+vegetation+greening+and+climate+change+on+the+changes+in+evapotranspiration+and+transpiration+fraction+over+the+Yellow+River+Basin": 33,
     "Untangling+the+effects+of+climate+variation+and+human+interference+on+grassland+dynamics+in+North+China": 17,
     "Vegetation+response+to+changes+in+climate+across+different+climate+zones+in+China": 93,
     "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 28,

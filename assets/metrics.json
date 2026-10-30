@@ -1,22 +1,22 @@
 {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-10-30T12:15:16+01:00",
+  "updated": "2026-10-30T18:15:16+01:00",
   "updatedDisplay": "30 October 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1384,
-    "citationsSince": 1338,
+    "citations": 1385,
+    "citationsSince": 1339,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
     "i10IndexSince": 23
   },
-  "works": 47,
+  "works": 48,
   "papers": [
     {
       "title": "Assessing the effects of climate variation and human activities on grassland degradation and restoration across the globe",
-      "citations": 187,
+      "citations": 188,
       "year": 2019
     },
     {
@@ -195,6 +195,11 @@
       "year": 2025
     },
     {
+      "title": "Reversal from historical gains to future losses of tropical ecosystem resilience under climate change",
+      "citations": 0,
+      "year": 2026
+    },
+    {
       "title": "Attributing the changes in evapotranspiration and its components to climatic factors and vegetation dynamics in the Three-River Headwaters Region",
       "citations": 0,
       "year": 2026
@@ -282,6 +287,7 @@
     "Mechanistic+drivers+and+sustainability+implications+of+ecosystem+service+interactions+in+the+Yinshan+Mountain+Region": 1,
     "Quantifying+the+changes+in+soil+moisture+caused+by+vegetation+greening+and+climate+change+across+different+drought+gradient+in+China": 5,
     "Attributing+the+changes+in+evapotranspiration+and+its+components+to+climatic+factors+and+vegetation+dynamics+in+the+Three-River+Headwaters+Region": 0,
+    "Reversal+from+historical+gains+to+future+losses+of+tropical+ecosystem+resilience+under+climate+change": 0,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin%3A+Role+of+climate+and+vegetation": 6,
     "Quantifying+the+impact+of+vegetation+greening+on+evapotranspiration+and+its+components+on+the+Tibetan+Plateau": 3,
     "Quantifying+the+spatiotemporal+changes+in+evapotranspiration+and+its+components+driven+by+vegetation+greening+and+climate+change+in+the+northern+foot+of+Yinshan+Mountain": 15,
@@ -291,12 +297,12 @@
     "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 28,
     "Untangling+the+effects+of+management+measures%2C+climate+and+land+use+cover+change+on+grassland+dynamics+in+the+Qinghai-Tibet+Plateau%2C+China": 34,
     "Spatiotemporal+dynamics+of+China%E2%80%99s+grassland+NPP+and+its+driving+factors": 35,
-    "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 187,
+    "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 188,
     "Grassland+dynamics+in+responses+to+climate+variation+and+human+activities+in+China+from+2000+to+2013": 179,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin+Role+of+climate+and+vegetation": 6
   },
   "citationMatches": {
-    "matched": 43,
+    "matched": 44,
     "queries": 54
   }
 }

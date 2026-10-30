@@ -12,7 +12,7 @@ window.__SITE_COUNTS__ = {
   "cmip6-datasets": 8,
   "first-author-papers": 9,
   "highly-cited-papers": 1,
-  "in-progress-papers": 13,
+  "in-progress-papers": 11,
   "journal-papers": 59,
   "pub-year-first": "2018",
   "pub-year-last": "2026",

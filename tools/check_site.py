@@ -452,7 +452,7 @@ WANG_BOLD = {
     "n2xiX4BNRQT86NakgOuDNk": 5,   # J. Environ. Manage. 2025
     "CGHzWxcCnRFsKFFdycui0E": 8,   # Remote Sens. 2025
     "mf4VXF3q6vTkWiPJJWFII7": 3,   # Remote Sens. 2024
-    "aETeoAnoDwd13Cdnnrp2qJ": 7,   # Earth's Future, under review
+    "aETeoAnoDwd13Cdnnrp2qJ": 7,   # J. Clean. Prod. 2026
     "yrkVI42jzmugdNjI7CpCKE": 7,   # Sci. Total Environ. 2023
 }
 if pub:

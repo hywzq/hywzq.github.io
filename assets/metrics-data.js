@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-11-01T00:15:08+01:00",
+  "updated": "2026-11-01T06:15:17+01:00",
   "updatedDisplay": "01 November 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1385,
-    "citationsSince": 1339,
+    "citations": 1386,
+    "citationsSince": 1340,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -132,14 +132,14 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2020
     },
     {
+      "title": "Rapid retreat of the East Asian summer monsoon on the western Chinese loess Plateau during the middle to late Holocene and its environmental and societal implications",
+      "citations": 9,
+      "year": 2023
+    },
+    {
       "title": "Miocene African topography induces decoupling of Somali Jet and South Asian summer monsoon rainfall",
       "citations": 8,
       "year": 2025
-    },
-    {
-      "title": "Rapid retreat of the East Asian summer monsoon on the western Chinese loess Plateau during the middle to late Holocene and its environmental and societal implications",
-      "citations": 8,
-      "year": 2023
     },
     {
       "title": "Westerlies and monsoon climate systems shape Holocene moisture patterns in the southern Tibetan Plateau: Evidence from aeolian sedimentary records",
@@ -273,7 +273,7 @@ window.__SCHOLAR_METRICS__ = {
     "Seasonal+to+decadal+variations+of+precipitation+oxygen+isotopes+in+northern+China+linked+to+the+moisture+source": 45,
     "Holocene+forcing+of+aeolian+dust+activity+over+the+Tibetan+Plateau+and+its+surroundings": 35,
     "Spatiotemporal+differences+in+Holocene+climate+change+in+the+Yarlung+Tsangpo+catchment%2C+southern+Tibetan+Plateau%2C+reconstructed+from+two+sandy+loess+sequences": 20,
-    "Rapid+retreat+of+the+East+Asian+summer+monsoon+on+the+western+Chinese+loess+Plateau+during+the+middle+to+late+Holocene+and+its+environmental+and+societal+implications": 8,
+    "Rapid+retreat+of+the+East+Asian+summer+monsoon+on+the+western+Chinese+loess+Plateau+during+the+middle+to+late+Holocene+and+its+environmental+and+societal+implications": 9,
     "Fewer+basins+will+follow+their+Budyko+curves+under+global+warming+and+fossil-fueled+development": 48,
     "Influence+of+May%E2%80%93June+frontal+precipitation+on+coherent+moisture+pattern+in+east-central+China+since+1793+based+on+tree-ring+data": 4,
     "Linking+moisture+and+near-surface+wind+with+winter+temperature+to+reveal+the+Holocene+climate+evolution+in+arid+Xinjiang+region+of+China": 21,

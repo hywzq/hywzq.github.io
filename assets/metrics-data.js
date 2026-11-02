@@ -3,7 +3,7 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-11-02T12:15:16+01:00",
+  "updated": "2026-11-02T18:15:17+01:00",
   "updatedDisplay": "02 November 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
@@ -43,7 +43,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Increased growth of Qinghai spruce in northwestern China during the recent warming hiatus",
-      "citations": 88,
+      "citations": 87,
       "year": 2018
     },
     {
@@ -52,14 +52,14 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2022
     },
     {
+      "title": "Vegetation history and precipitation changes in the NE Qinghai‐Tibet Plateau: A 7,900‐years pollen record from Caodalian Lake",
+      "citations": 46,
+      "year": 2021
+    },
+    {
       "title": "Seasonal to decadal variations of precipitation oxygen isotopes in northern China linked to the moisture source",
       "citations": 45,
       "year": 2024
-    },
-    {
-      "title": "Vegetation history and precipitation changes in the NE Qinghai‐Tibet Plateau: A 7,900‐years pollen record from Caodalian Lake",
-      "citations": 45,
-      "year": 2021
     },
     {
       "title": "Holocene moisture evolution and its response to atmospheric circulation recorded by aeolian deposits in the southern Tibetan Plateau",
@@ -77,14 +77,14 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2024
     },
     {
-      "title": "Spatiotemporal dynamics of China’s grassland NPP and its driving factors.",
-      "citations": 35,
-      "year": 2020
-    },
-    {
       "title": "Untangling the effects of management measures, climate and land use cover change on grassland dynamics in the Qinghai–Tibet Plateau, China",
       "citations": 34,
       "year": 2021
+    },
+    {
+      "title": "Spatiotemporal dynamics of China’s grassland NPP and its driving factors.",
+      "citations": 34,
+      "year": 2020
     },
     {
       "title": "Discriminating the impacts of vegetation greening and climate change on the changes in evapotranspiration and transpiration fraction over the Yellow River Basin",
@@ -93,7 +93,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Diverse responses of grassland dynamics to climatic and anthropogenic factors across the different time scale in China",
-      "citations": 28,
+      "citations": 29,
       "year": 2021
     },
     {
@@ -281,8 +281,8 @@ window.__SCHOLAR_METRICS__ = {
     "Holocene+moisture+evolution+and+its+response+to+atmospheric+circulation+recorded+by+aeolian+deposits+in+the+southern+Tibetan+Plateau": 42,
     "Moisture+variation+inferred+from+tree+rings+in+north+central+China+and+its+links+with+the+remote+oceans": 10,
     "Variability+of+mean+temperature+since+1808+A.D.+in+Shennongjia+Mountain+area+inferred+from+tree+ring": 13,
-    "Vegetation+history+and+precipitation+changes+in+the+NE+Qinghai-Tibet+Plateau%3A+a+7%2C900-yr+pollen+record+from+Caodalian+Lake": 45,
-    "Increased+growth+of+Qinghai+spruce+in+northwestern+China+during+the+recent+warming+hiatus+period": 88,
+    "Vegetation+history+and+precipitation+changes+in+the+NE+Qinghai-Tibet+Plateau%3A+a+7%2C900-yr+pollen+record+from+Caodalian+Lake": 46,
+    "Increased+growth+of+Qinghai+spruce+in+northwestern+China+during+the+recent+warming+hiatus+period": 87,
     "Declining+Sensitivity+and+Increasing+Resistance+Time+of+Ecosystem+Water+Use+Efficiency+to+Meteorological+Drought": 1,
     "Intensifying+negative+asymmetry+in+gross+primary+productivity+response+to+precipitation+anomalies+across+the+northern+hemisphere%3A+evidence+and+drivers": 0,
     "Climate+change+impacts+on+runoff+and+water+conservation+modulated+by+slope+and+artificial+forest+withdrawal+in+tropics": 0,
@@ -296,9 +296,9 @@ window.__SCHOLAR_METRICS__ = {
     "Discriminating+the+impacts+of+vegetation+greening+and+climate+change+on+the+changes+in+evapotranspiration+and+transpiration+fraction+over+the+Yellow+River+Basin": 33,
     "Untangling+the+effects+of+climate+variation+and+human+interference+on+grassland+dynamics+in+North+China": 17,
     "Vegetation+response+to+changes+in+climate+across+different+climate+zones+in+China": 93,
-    "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 28,
+    "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 29,
     "Untangling+the+effects+of+management+measures%2C+climate+and+land+use+cover+change+on+grassland+dynamics+in+the+Qinghai-Tibet+Plateau%2C+China": 34,
-    "Spatiotemporal+dynamics+of+China%E2%80%99s+grassland+NPP+and+its+driving+factors": 35,
+    "Spatiotemporal+dynamics+of+China%E2%80%99s+grassland+NPP+and+its+driving+factors": 34,
     "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 188,
     "Grassland+dynamics+in+responses+to+climate+variation+and+human+activities+in+China+from+2000+to+2013": 179,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin+Role+of+climate+and+vegetation": 6

@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-11-04T12:15:14+01:00",
+  "updated": "2026-11-04T18:15:12+01:00",
   "updatedDisplay": "04 November 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1386,
-    "citationsSince": 1340,
+    "citations": 1387,
+    "citationsSince": 1341,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -73,7 +73,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Holocene forcing of aeolian dust activity over the Tibetan Plateau and its surroundings",
-      "citations": 35,
+      "citations": 34,
       "year": 2024
     },
     {
@@ -98,7 +98,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Linking moisture and near-surface wind with winter temperature to reveal the Holocene climate evolution in arid Xinjiang region of China",
-      "citations": 21,
+      "citations": 22,
       "year": 2022
     },
     {
@@ -163,7 +163,7 @@ window.__SCHOLAR_METRICS__ = {
     },
     {
       "title": "Differential vegetation feedback on the global land monsoon system during the mid-Holocene and Last Interglacial",
-      "citations": 4,
+      "citations": 5,
       "year": 2026
     },
     {
@@ -258,7 +258,7 @@ window.__SCHOLAR_METRICS__ = {
     }
   ],
   "citations": {
-    "Differential+vegetation+feedback+on+the+global+land+monsoon+system+during+the+Mid-Holocene+and+Last+Interglacial": 4,
+    "Differential+vegetation+feedback+on+the+global+land+monsoon+system+during+the+Mid-Holocene+and+Last+Interglacial": 5,
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
     "Northward+migration+of+the+East+Asian+summer+monsoon+northern+boundary+during+the+21st+century": 40,
@@ -271,12 +271,12 @@ window.__SCHOLAR_METRICS__ = {
     "Modeling+the+Late+Pliocene+with+AWI-CM3+as+a+contribution+to+PlioMIP3+core+experiments": 1,
     "Qiangtang+Plateau+high+pressure+system+and+Indian+summer+monsoon+co-regulated+natural+dust+storm+activity+on+the+southern+Tibetan+Plateau+during+the+Holocene": 6,
     "Seasonal+to+decadal+variations+of+precipitation+oxygen+isotopes+in+northern+China+linked+to+the+moisture+source": 45,
-    "Holocene+forcing+of+aeolian+dust+activity+over+the+Tibetan+Plateau+and+its+surroundings": 35,
+    "Holocene+forcing+of+aeolian+dust+activity+over+the+Tibetan+Plateau+and+its+surroundings": 34,
     "Spatiotemporal+differences+in+Holocene+climate+change+in+the+Yarlung+Tsangpo+catchment%2C+southern+Tibetan+Plateau%2C+reconstructed+from+two+sandy+loess+sequences": 20,
     "Rapid+retreat+of+the+East+Asian+summer+monsoon+on+the+western+Chinese+loess+Plateau+during+the+middle+to+late+Holocene+and+its+environmental+and+societal+implications": 9,
     "Fewer+basins+will+follow+their+Budyko+curves+under+global+warming+and+fossil-fueled+development": 48,
     "Influence+of+May%E2%80%93June+frontal+precipitation+on+coherent+moisture+pattern+in+east-central+China+since+1793+based+on+tree-ring+data": 4,
-    "Linking+moisture+and+near-surface+wind+with+winter+temperature+to+reveal+the+Holocene+climate+evolution+in+arid+Xinjiang+region+of+China": 21,
+    "Linking+moisture+and+near-surface+wind+with+winter+temperature+to+reveal+the+Holocene+climate+evolution+in+arid+Xinjiang+region+of+China": 22,
     "A+data-model+comparison+pinpoints+Holocene+spatiotemporal+pattern+of+East+Asian+summer+monsoon": 182,
     "Holocene+moisture+evolution+and+its+response+to+atmospheric+circulation+recorded+by+aeolian+deposits+in+the+southern+Tibetan+Plateau": 42,
     "Moisture+variation+inferred+from+tree+rings+in+north+central+China+and+its+links+with+the+remote+oceans": 10,

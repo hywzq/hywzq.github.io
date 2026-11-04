@@ -3,8 +3,8 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-11-04T18:15:12+01:00",
-  "updatedDisplay": "04 November 2026",
+  "updated": "2026-11-05T00:15:15+01:00",
+  "updatedDisplay": "05 November 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
     "citations": 1387,

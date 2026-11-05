@@ -3,7 +3,7 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-11-05T12:15:14+01:00",
+  "updated": "2026-11-05T18:15:14+01:00",
   "updatedDisplay": "05 November 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
@@ -14,7 +14,7 @@ window.__SCHOLAR_METRICS__ = {
     "i10Index": 23,
     "i10IndexSince": 23
   },
-  "works": 48,
+  "works": 49,
   "papers": [
     {
       "title": "Assessing the effects of climate variation and human activities on grassland degradation and restoration across the globe",
@@ -207,6 +207,11 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2026
     },
     {
+      "title": "Regional reorganization of fire carbon emissions linked to vegetation productivity and drying demand in interglacial simulations",
+      "citations": 0,
+      "year": 2026
+    },
+    {
       "title": "Intensifying negative asymmetry in gross primary productivity response to precipitation anomalies across the Northern Hemisphere: evidence and drivers",
       "citations": 0,
       "year": 2026
@@ -258,6 +263,7 @@ window.__SCHOLAR_METRICS__ = {
     }
   ],
   "citations": {
+    "Regional+reorganization+of+fire+carbon+emissions+linked+to+vegetation+productivity+and+drying+demand+in+interglacial+simulations": 0,
     "Differential+vegetation+feedback+on+the+global+land+monsoon+system+during+the+Mid-Holocene+and+Last+Interglacial": 5,
     "Westerlies+and+monsoon+climate+systems+shape+Holocene+moisture+patterns+in+the+southern+Tibetan+Plateau%3A+Evidence+from+aeolian+sedimentary+records": 6,
     "Non-negligible+factors+influence+tree-ring-based+temperature+reconstruction+and+comparison+over+mid-latitude+China": 0,
@@ -304,7 +310,7 @@ window.__SCHOLAR_METRICS__ = {
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin+Role+of+climate+and+vegetation": 6
   },
   "citationMatches": {
-    "matched": 44,
+    "matched": 45,
     "queries": 54
   }
 };

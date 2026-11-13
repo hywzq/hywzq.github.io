@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-11-13T12:15:11+01:00",
+  "updated": "2026-11-13T18:15:10+01:00",
   "updatedDisplay": "13 November 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1395,
-    "citationsSince": 1349,
+    "citations": 1396,
+    "citationsSince": 1350,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -18,7 +18,7 @@ window.__SCHOLAR_METRICS__ = {
   "papers": [
     {
       "title": "Assessing the effects of climate variation and human activities on grassland degradation and restoration across the globe",
-      "citations": 188,
+      "citations": 189,
       "year": 2019
     },
     {
@@ -305,7 +305,7 @@ window.__SCHOLAR_METRICS__ = {
     "Diverse+responses+of+grassland+dynamics+to+climatic+and+anthropogenic+factors+across+the+different+time+scale+in+China": 29,
     "Untangling+the+effects+of+management+measures%2C+climate+and+land+use+cover+change+on+grassland+dynamics+in+the+Qinghai-Tibet+Plateau%2C+China": 34,
     "Spatiotemporal+dynamics+of+China%E2%80%99s+grassland+NPP+and+its+driving+factors": 35,
-    "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 188,
+    "Assessing+the+effects+of+climate+variation+and+human+activities+on+grassland+degradation+and+restoration+across+the+globe": 189,
     "Grassland+dynamics+in+responses+to+climate+variation+and+human+activities+in+China+from+2000+to+2013": 179,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin+Role+of+climate+and+vegetation": 6
   },

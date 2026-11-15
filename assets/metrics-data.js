@@ -3,12 +3,12 @@
 window.__SCHOLAR_METRICS__ = {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=tv_6I4YAAAAJ",
-  "updated": "2026-11-15T00:15:11+01:00",
+  "updated": "2026-11-15T06:15:12+01:00",
   "updatedDisplay": "15 November 2026",
   "scholar": {
     "sinceLabel": "Since 2021",
-    "citations": 1396,
-    "citationsSince": 1350,
+    "citations": 1397,
+    "citationsSince": 1351,
     "hIndex": 18,
     "hIndexSince": 18,
     "i10Index": 23,
@@ -172,14 +172,14 @@ window.__SCHOLAR_METRICS__ = {
       "year": 2025
     },
     {
+      "title": "Quantifying the impact of vegetation greening on evapotranspiration and its components on the Tibetan Plateau",
+      "citations": 4,
+      "year": 2025
+    },
+    {
       "title": "Influence of May–June frontal precipitation on coherent moisture pattern in east-central China since 1793 based on tree-ring data",
       "citations": 4,
       "year": 2022
-    },
-    {
-      "title": "Quantifying the impact of vegetation greening on evapotranspiration and its components on the Tibetan Plateau",
-      "citations": 3,
-      "year": 2025
     },
     {
       "title": "Declining Sensitivity and Increasing Resistance Time of Ecosystem Water Use Efficiency to Meteorological Drought",
@@ -297,7 +297,7 @@ window.__SCHOLAR_METRICS__ = {
     "Attributing+the+changes+in+evapotranspiration+and+its+components+to+climatic+factors+and+vegetation+dynamics+in+the+Three-River+Headwaters+Region": 0,
     "Reversal+from+historical+gains+to+future+losses+of+tropical+ecosystem+resilience+under+climate+change": 0,
     "Mechanisms+behind+evapotranspiration+dynamics+in+the+middle+Yellow+River+Basin%3A+Role+of+climate+and+vegetation": 6,
-    "Quantifying+the+impact+of+vegetation+greening+on+evapotranspiration+and+its+components+on+the+Tibetan+Plateau": 3,
+    "Quantifying+the+impact+of+vegetation+greening+on+evapotranspiration+and+its+components+on+the+Tibetan+Plateau": 4,
     "Quantifying+the+spatiotemporal+changes+in+evapotranspiration+and+its+components+driven+by+vegetation+greening+and+climate+change+in+the+northern+foot+of+Yinshan+Mountain": 16,
     "Discriminating+the+impacts+of+vegetation+greening+and+climate+change+on+the+changes+in+evapotranspiration+and+transpiration+fraction+over+the+Yellow+River+Basin": 33,
     "Untangling+the+effects+of+climate+variation+and+human+interference+on+grassland+dynamics+in+North+China": 17,
